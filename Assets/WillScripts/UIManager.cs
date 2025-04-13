@@ -76,12 +76,12 @@ public class UIManager : MonoBehaviour
     {
         SetFalse();
         float timer = 0;
-        SwitchUI(loadingScreen);
+        loadingScreen.SetActive(true);
 
         while(timer < fadeTime)
         {
+            loadingCanvasGroup.alpha = Mathf.Lerp(0,1, timer / fadeTime);
             timer += Time.deltaTime;
-            loadingCanvasGroup.alpha = Mathf.Lerp(0, 1, timer / fadeTime);
             yield return null;
         }
         loadingCanvasGroup.alpha = 1;

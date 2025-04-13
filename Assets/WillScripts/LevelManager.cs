@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private GameManager gameManager;//The game manager
+    [SerializeField] private PlatformManager platformManager;//The platform manager
 
     void Start()
     {
@@ -48,6 +49,14 @@ public class LevelManager : MonoBehaviour
     {
         sceneName = SceneManager.GetActiveScene().name;
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        if(platformManager == null)
+        {
+            platformManager = FindObjectOfType<PlatformManager>();
+        }
+        if(platformManager != null)
+        {
+            platformManager.SpawnPlatforms();
+        }
         if(spawnPoint != null)
         {
             playerPrefab.transform.position = spawnPoint.transform.position;
@@ -85,6 +94,16 @@ public class LevelManager : MonoBehaviour
             }
             yield return null;
         }
+        if(platformManager == null)
+        {
+            Debug.Log("PlatformManager is null, finding it again.");
+            platformManager = FindObjectOfType<PlatformManager>();
+        }
+        if(platformManager != null)
+        {
+            Debug.Log("PlatformManager found, spawning platforms.");
+            platformManager.StartCoroutine(platformManager.SpawnPlatforms());
+        }
         //Wait for the scene to load
         yield return new WaitForSeconds(sceneLoadTime);
         //Set the player to the spawn point
@@ -100,6 +119,10 @@ public class LevelManager : MonoBehaviour
         //Wait for the screen to load
         yield return new WaitForSeconds(uIManager.fadeTime);
         //Load the scene
+        yield return new WaitForSeconds(sceneLoadTime);
+        
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.completed += OperationCompleted;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
     /// <summary>
