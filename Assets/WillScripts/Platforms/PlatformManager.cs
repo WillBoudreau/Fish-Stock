@@ -5,52 +5,62 @@ using UnityEngine;
 public class PlatformManager : MonoBehaviour
 {
     [Header("Platform Spawner Settings")]
-    public bool canSpawnPlatform = false; // Flag to control platform spawning
-    [SerializeField] private GameObject platform; // Array of platform prefabs
-    [SerializeField] private Transform[] spawnPoint; // Array of spawn points for platforms
+    [SerializeField] private GameObject[] platforms; // Array of platform prefabs
+    public List<GameObject> spawnedPlatforms = new List<GameObject>(); // List of spawned platforms
+    [SerializeField] private Transform[] spawnPoint = new Transform[0]; // Array of spawn points for platforms
     [SerializeField] private float spawnInterval = 2f; // Time interval between spawns
     [SerializeField] private float distanceThreshold = 5f; // Distance threshold for spawning platforms
-
-
-    /// <summary>
-    /// Coroutine to spawn platforms at regular intervals.
+    [SerializeField] private float spawnDelay = 1f; // Delay before spawning platforms
+    [SerializeField] private int maxPlatforms = 5; // Maximum number of platforms to spawn
+    ///<summary>
+    /// Spawns a new platform at the specified position.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator SpawnPlatforms()
+    public void SpawnNewPlatform()
     {
-        Debug.Log("Spawning platforms...");
-        for (int i = 0; i < spawnPoint.Length; i++)
+        if(spawnedPlatforms.Count >= maxPlatforms) // Check if the maximum number of platforms is reached
         {
-            GameObject newPlatform = Instantiate(platform, spawnPoint[i].position, Quaternion.identity);
-            newPlatform.transform.SetParent(spawnPoint[i]);
-            Debug.Log(spawnInterval);
-            yield return new WaitForSeconds(spawnInterval); 
-            Debug.Log("Platform spawned: " + newPlatform.name);
-            Debug.Log("Platform spawned at: " + spawnPoint[i].position);
+            Debug.Log("Max platforms reached, not spawning new platform."); // Debug log for max platforms reached
+            return; // Exit if the maximum number of platforms is reached
         }
-        StartCoroutine(CheckDistance());
+        Debug.Log("SpawnNewPlatform called"); 
+        Transform availibleSpawnPoint = spawnPoint[Random.Range(0, spawnPoint.Length)]; // Randomly select a spawn point
+        GameObject platformPrefab = platforms[Random.Range(0, platforms.Length)]; 
+        GameObject newPlatform = Instantiate(platformPrefab, availibleSpawnPoint.position, Quaternion.identity); 
+        spawnedPlatforms.Add(newPlatform);
+        StartCoroutine(CheckDistance()); // Start checking the distance after spawning a new platform
     }
     /// <summary>
     /// Shoots a ray from the spawn point to check for the distance from the previous platform.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator CheckDistance()
+    public IEnumerator CheckDistance()
     {
-        RaycastHit hit;
-        Vector3 direction = spawnPoint[0].position - spawnPoint[1].position;
-        if (Physics.Raycast(spawnPoint[0].position, direction, out hit))
+        Debug.Log("CheckDistance called"); // Debug log for checking distance
+        RaycastHit2D hit;
+
+        foreach (Transform point in spawnPoint)
         {
-            float distance = hit.distance;
-            if (distance > distanceThreshold) 
+            hit = Physics2D.Raycast(point.position, Vector2.down, distanceThreshold);
+            if (hit.collider != null)
             {
-                yield return new WaitForSeconds(spawnInterval);
-                SpawnPlatforms();
+                Debug.Log("Raycast hit: " + hit.transform.name); // Debug log for raycast hit
+                if (hit.transform.CompareTag("Platform"))
+                {
+                    // If the distance is less than the threshold, wait for a while before checking again
+                    yield return new WaitForSeconds(spawnInterval);
+                }
+                Debug.Log("Platform hit, checking distance."); // Debug log for platform hit
             }
-        }
-        else
-        {
-            yield return new WaitForSeconds(spawnInterval);
-            SpawnPlatforms();
+            else
+            {   
+                Debug.Log("No platform hit, spawning new platform."); // Debug log for no platform hit
+                spawnDelay = Random.Range(0.5f, 2f); // Randomize the spawn delay
+                Debug.Log(spawnDelay);
+                yield return new WaitForSeconds(spawnDelay); // Wait for the spawn delay
+                // If the distance is greater than the threshold, spawn a new platform
+                SpawnNewPlatform();
+            }
         }
     }
     void OnDrawGizmos()
