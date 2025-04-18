@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
     private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask groundMask;
-    public KeyCode jumpingKey; 
+    public KeyCode jumpingKey;
+    public KeyCode leftButton;
+    public KeyCode rightButton;
 
 
     // Start is called before the first frame update
@@ -21,7 +23,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        if (Input.GetKey(leftButton))
+        {
+            body.velocity = new Vector2(-1 * speed, body.velocity.y);
+        }
+        else if (Input.GetKey(rightButton))
+        {
+            body.velocity = new Vector2(1 * speed, body.velocity.y);
+        }
+        else
+            body.velocity = new Vector2(0, body.velocity.y);
 
         if (Input.GetKey(jumpingKey))
         {

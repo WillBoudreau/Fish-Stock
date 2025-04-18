@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     private HealthSystem healthSystem = new HealthSystem(); 
     public int playerHP;
     public TextMeshProUGUI playerHPtext; 
+    public string playerName;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
         healthSystem.setMaxHP(10); 
         healthSystem.health = healthSystem.maxHealth;
         playerHP = healthSystem.health;
-        playerHPtext.text = "Health: " + playerHP; 
+        playerHPtext.text = playerName + " Health: " + playerHP; 
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
         if(healthSystem.health != playerHP) 
         {
             playerHP = healthSystem.health;
-            playerHPtext.text = "Health: " + playerHP;
+            playerHPtext.text = playerName + " Health: " + playerHP;
         }
     }
 }
