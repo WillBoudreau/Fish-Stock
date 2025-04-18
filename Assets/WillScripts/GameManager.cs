@@ -15,6 +15,19 @@ public class GameManager : MonoBehaviour
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
+    void Start()
+    {
+        uIManager = FindObjectOfType<UIManager>();
+        levelManager = FindObjectOfType<LevelManager>();
+        SetGameState(currentGameState);//Set the game state to the current game state
+    }
+    void Update()
+    {
+        if(levelManager.sceneName == "GamePlayScene")
+        {
+            SetGameState(gameState.InGame);//Set the game state to in game
+        }
+    }
 
     /// <summary>
     /// Set the game state to the specified state
@@ -28,9 +41,11 @@ public class GameManager : MonoBehaviour
         {
             case gameState.MainMenu:
                 uIManager.SwitchUI(uIManager.mainMenu);
+                playerPrefab.SetActive(false);
                 break;
             case gameState.InGame:
                 uIManager.SwitchUI(uIManager.hUD);
+                playerPrefab.SetActive(true);
                 break;
             case gameState.Paused:
                 uIManager.SwitchUI(uIManager.pauseMenu);

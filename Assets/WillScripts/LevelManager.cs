@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     [Header("Level Manager")]
     [Header("Level variables")]
     [SerializeField] private int currentLevelIndex = 0;//The current level index
-    [SerializeField] private GameObject playerPrefab;//The player prefab
+    private GameObject playerPrefab;//The player prefab
     [SerializeField] private GameObject spawnPoint;//The spawn point for the player
     public List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();//The list of scenes to load
     public string sceneName;//The name of the scene to load
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
         {
             gameManager = FindObjectOfType<GameManager>();
         }
-        playerPrefab = gameManager.playerPrefab;
+        playerPrefab = gameManager.playerPrefab;//Get the player prefab from the GameManager
     }
     /// <summary>
     /// Load Scene for the buttons in the UI
@@ -49,16 +49,19 @@ public class LevelManager : MonoBehaviour
     {
         sceneName = SceneManager.GetActiveScene().name;
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        Debug.Log("SpawnPoint found: " + spawnPoint.name);
         if(platformManager == null)
         {
             platformManager = FindObjectOfType<PlatformManager>();
         }
         if(platformManager != null)
         {
-            platformManager.SpawnPlatforms();
+            platformManager.SpawnNewPlatform();
         }
         if(spawnPoint != null)
         {
+            Debug.Log("SpawnPoint found: " + spawnPoint.name);
+
             playerPrefab.transform.position = spawnPoint.transform.position;
         }
         if (scene.name == sceneName)
@@ -102,7 +105,7 @@ public class LevelManager : MonoBehaviour
         if(platformManager != null)
         {
             Debug.Log("PlatformManager found, spawning platforms.");
-            platformManager.StartCoroutine(platformManager.SpawnPlatforms());
+            platformManager.StartCoroutine(platformManager.CheckDistance());
         }
         //Wait for the scene to load
         yield return new WaitForSeconds(sceneLoadTime);

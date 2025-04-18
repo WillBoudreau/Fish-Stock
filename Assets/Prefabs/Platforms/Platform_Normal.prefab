@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7930179340489193959}
   - component: {fileID: 293157908194929142}
   - component: {fileID: 3280515834512412790}
-  m_Layer: 0
+  - component: {fileID: 363374489160733399}
+  m_Layer: 6
   m_Name: Platform_Normal
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,16 +92,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9105553a2d0b4b04bbc770cb41fb5f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 5
-  collapsingSpeed: 2
-  spikeSpeed: 3
+  normalSpeed: 1
+  spikeSpeed: 1
+  players: []
+  collapsingSpeed: 1
+  camera: {fileID: 0}
+  platformManager: {fileID: 0}
   platformIndex: 0
   platformType: 0
   prefab:
   - {fileID: 62837665299838883}
   speed: 0
   isMoving: 0
-  isCollapsing: 0
+  canMove: 0
+  distanceThreshold: 10
+--- !u!61 &363374489160733399
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62837665299838883}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0020700432, y: 0.0328836}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15446258, y: 0.2229088}
+  m_EdgeRadius: 0
 --- !u!1 &320295928313506096
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2358725839181139250}
   - component: {fileID: 7728676849585939972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
