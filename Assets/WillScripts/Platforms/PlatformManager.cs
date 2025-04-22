@@ -7,69 +7,147 @@ public class PlatformManager : MonoBehaviour
     [Header("Platform Spawner Settings")]
     [SerializeField] private GameObject[] platforms; // Array of platform prefabs
     public List<GameObject> spawnedPlatforms = new List<GameObject>(); // List of spawned platforms
-    [SerializeField] private Transform[] spawnPoint = new Transform[0]; // Array of spawn points for platforms
-    [SerializeField] private float spawnInterval = 2f; // Time interval between spawns
-    [SerializeField] private float distanceThreshold = 5f; // Distance threshold for spawning platforms
-    [SerializeField] private float spawnDelay = 1f; // Delay before spawning platforms
-    [SerializeField] private int maxPlatforms = 5; // Maximum number of platforms to spawn
-    ///<summary>
-    /// Spawns a new platform at the specified position.
-    /// </summary>
-    /// <returns></returns>
-    public void SpawnNewPlatform()
+    public int maxPlatformsArea1 = 5; // Maximum number of platforms to spawn
+    public int maxPlatformsArea2 = 5; // Maximum number of platforms to spawn
+    public int maxPlatformsArea3 = 5; // Maximum number of platforms to spawn
+    public int maxPlatformsArea4 = 5; // Maximum number of platforms to spawn
+
+    [Header("Platform Spawn area settings")]
+    [SerializeField] private Rect spawnArea1; // Spawn area for the first platform
+    [SerializeField] private Rect spawnArea2; // Spawn area for the second platform
+    [SerializeField] private Rect spawnArea3; // Spawn area for the third platform
+    [SerializeField] private Rect spawnArea4; // Spawn area for the fourth platform
+    [Header("Class References")]
+    [SerializeField] private GameManager gameManager; // Reference to the game manager
+
+    void Start()
     {
-        if(spawnedPlatforms.Count >= maxPlatforms) // Check if the maximum number of platforms is reached
+        if (gameManager == null)
         {
-            Debug.Log("Max platforms reached, not spawning new platform."); // Debug log for max platforms reached
-            return; // Exit if the maximum number of platforms is reached
+            gameManager = FindObjectOfType<GameManager>();
         }
-        Debug.Log("SpawnNewPlatform called"); 
-        Transform availibleSpawnPoint = spawnPoint[Random.Range(0, spawnPoint.Length)]; // Randomly select a spawn point
-        GameObject platformPrefab = platforms[Random.Range(0, platforms.Length)]; 
-        GameObject newPlatform = Instantiate(platformPrefab, availibleSpawnPoint.position, Quaternion.identity); 
-        spawnedPlatforms.Add(newPlatform);
-        StartCoroutine(CheckDistance()); // Start checking the distance after spawning a new platform
     }
     /// <summary>
-    /// Shoots a ray from the spawn point to check for the distance from the previous platform.
+    /// Spawn a new platform at a random position within the designated spawn area.
+    /// Ensure the first platform is within 5 units of the player.
     /// </summary>
-    /// <returns></returns>
-    public IEnumerator CheckDistance()
+    public void SpawnNewPlatform(Vector3 playerPOS)
     {
-        Debug.Log("CheckDistance called"); // Debug log for checking distance
-        RaycastHit2D hit;
-
-        foreach (Transform point in spawnPoint)
+        if (spawnedPlatforms.Count < maxPlatformsArea1 && gameManager.checkpointIndex == 0)
         {
-            hit = Physics2D.Raycast(point.position, Vector2.down, distanceThreshold);
-            if (hit.collider != null)
-            {
-                Debug.Log("Raycast hit: " + hit.transform.name); // Debug log for raycast hit
-                if (hit.transform.CompareTag("Platform"))
-                {
-                    // If the distance is less than the threshold, wait for a while before checking again
-                    yield return new WaitForSeconds(spawnInterval);
-                }
-                Debug.Log("Platform hit, checking distance."); // Debug log for platform hit
-            }
-            else
-            {   
-                Debug.Log("No platform hit, spawning new platform."); // Debug log for no platform hit
-                spawnDelay = Random.Range(0.5f, 2f); // Randomize the spawn delay
-                Debug.Log(spawnDelay);
-                yield return new WaitForSeconds(spawnDelay); // Wait for the spawn delay
-                // If the distance is greater than the threshold, spawn a new platform
-                SpawnNewPlatform();
-            }
+            StartCoroutine(SpawnPlatforms(spawnArea1, playerPOS));
+        }
+        else if (spawnedPlatforms.Count < maxPlatformsArea2 && gameManager.checkpointIndex == 1)
+        {
+            StartCoroutine(SpawnPlatforms(spawnArea2, playerPOS));
+        }
+        else if (spawnedPlatforms.Count < maxPlatformsArea3 && gameManager.checkpointIndex == 2)
+        {
+            StartCoroutine(SpawnPlatforms(spawnArea3, playerPOS));
+        }
+        else if (spawnedPlatforms.Count < maxPlatformsArea4 && gameManager.checkpointIndex == 3)
+        {
+            StartCoroutine(SpawnPlatforms(spawnArea4, playerPOS));
         }
     }
+    /// <summary>
+    /// Spawn a platform starting close to the player and then building up words towards the next area
+    /// </summary>
+    /// <param name="area"></param>
+    /// <param name="playerPOS"></param>
+    /// returns></returns>
+    private IEnumerator SpawnPlatforms(Rect area, Vector3 playerPOS)
+    {
+        Vector3 spawnPosition = randomPosition;
+        int maxAttempts = 10; 
+        int attempts = 0; 
+        if(attempts <= 5)
+        {
+            spawnPosition = playerPOS;
+        }
+        // Check if the platform is too close to the player
+        while (Vector3.Distance(spawnPosition, playerPOS) < 1f || attempts < maxAttempts)
+        {
+            spawnPosition = randomPosition;
+            attempts++;
+
+            if (attempts >= maxAttempts)
+            {
+                Debug.Log("Max attempts reached for spawning platform. No valid position found.");
+                break;
+            }
+            yield return null;
+        }
+
+        GameObject newPlatform = Instantiate(platforms[0], spawnPosition, Quaternion.identity);
+        spawnedPlatforms.Add(newPlatform);
+    }
+    /// <summary>
+    /// Select the designated spawn area based on checkpoint index from game manager.
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 randomPosition
+    {
+        get
+        {
+            Rect selectedArea = spawnArea1;
+
+            if (gameManager == null)
+            {
+               gameManager = FindObjectOfType<GameManager>();
+            }
+
+            switch (gameManager.checkpointIndex)
+            {
+                case 0:
+                    selectedArea = spawnArea1;
+                    break;
+                case 1:
+                    selectedArea = spawnArea2;
+                    break;
+                case 2:
+                    selectedArea = spawnArea3;
+                    break;
+                case 3:
+                    selectedArea = spawnArea4;
+                    break;
+                default:
+                    Debug.LogError("Invalid checkpoint index. Please set a valid checkpoint index in the GameManager.");
+                    return Vector3.zero; // Return a default value or handle the error as needed
+            }
+
+            // Generate a random position within the selected area
+            float xPos = Random.Range(selectedArea.xMin, selectedArea.xMax);
+            float yPos = Random.Range(selectedArea.yMin, selectedArea.yMax);
+            return new Vector3(xPos, yPos, 0); 
+        }
+    }
+    /// <summary>
+    /// Check to make sure that platforms do not overlap with each other.
+    /// </summary>
+    /// <param name="newPlatform"></param>
+    /// <returns></returns>
+    private bool IsPlatformOverlapping(GameObject newPlatform)
+    {
+        foreach (GameObject platform in spawnedPlatforms)
+        {
+            if (platform != newPlatform && platform.GetComponent<Collider2D>().bounds.Intersects(newPlatform.GetComponent<Collider2D>().bounds))
+            {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        foreach (Transform point in spawnPoint)
-        {
-            Gizmos.DrawLine(point.position, point.position + Vector3.down * distanceThreshold);
-            Gizmos.DrawSphere(point.position, 5f); 
-        }
+        Gizmos.DrawWireCube(spawnArea1.center, spawnArea1.size); // Draw the first spawn area
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(spawnArea2.center, spawnArea2.size); // Draw the second spawn area
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(spawnArea3.center, spawnArea3.size); // Draw the third spawn area
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(spawnArea4.center, spawnArea4.size); // Draw the fourth spawn area
     }
 }
