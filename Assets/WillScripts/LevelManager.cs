@@ -54,10 +54,6 @@ public class LevelManager : MonoBehaviour
         {
             platformManager = FindObjectOfType<PlatformManager>();
         }
-        if(platformManager != null)
-        {
-            platformManager.SpawnNewPlatform();
-        }
         if(spawnPoint != null)
         {
             Debug.Log("SpawnPoint found: " + spawnPoint.name);
@@ -97,20 +93,8 @@ public class LevelManager : MonoBehaviour
             }
             yield return null;
         }
-        if(platformManager == null)
-        {
-            Debug.Log("PlatformManager is null, finding it again.");
-            platformManager = FindObjectOfType<PlatformManager>();
-        }
-        if(platformManager != null)
-        {
-            Debug.Log("PlatformManager found, spawning platforms.");
-            platformManager.StartCoroutine(platformManager.CheckDistance());
-        }
         //Wait for the scene to load
         yield return new WaitForSeconds(sceneLoadTime);
-        //Set the player to the spawn point
-        //GameObject player = Instantiate(playerPrefab, spawnPoint.transform.position, Quaternion.identity);
     }
     /// <summary>
     /// Wait for the screen to load before loading the scene

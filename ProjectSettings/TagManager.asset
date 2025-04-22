@@ -7,6 +7,7 @@ TagManager:
   - SpawnPoint
   - Camera
   - Platform
+  - Door
   layers:
   - Default
   - TransparentFX

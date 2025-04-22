@@ -610,6 +610,7 @@ MonoBehaviour:
   isPaused: 0
   hasWon: 0
   isGameOver: 0
+  checkpointIndex: 0
   uIManager: {fileID: 0}
   levelManager: {fileID: 0}
 --- !u!1 &473845493

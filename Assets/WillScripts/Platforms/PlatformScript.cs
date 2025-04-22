@@ -10,28 +10,24 @@ public class PlatformScript : MonoBehaviour
     [SerializeField] private GameObject[] players; // Reference to the player object
     [SerializeField] private float collapsingSpeed = 2f; // Speed for collapsing platform
     [SerializeField] private Camera camera; // Reference to the camera
-    [SerializeField] private PlatformManager platformManager; // Reference to the platform manager
+    public PlatformManager platformManager; // Reference to the platform manager
     public int platformIndex; // Index of the platform
     public enum PlatformType { Normal, Collapsing, Spike,Extending } // Types of platforms
     public PlatformType platformType; // Type of the platform
-    public List<GameObject> prefab = new List<GameObject>(); // Prefab of the platform
     public float speed; // Speed of the platform
-    public bool isMoving; // Is the platform moving
     public bool canMove; // Can the platform move
     [SerializeField] private float distanceThreshold = 5f; // Distance threshold for destroying the platform
     PlatformCollapsingBehavior platformCollapsingBehavior;     
     private void Start()
     {
-        platformCollapsingBehavior = GetComponent<PlatformCollapsingBehavior>(); // Initialize the collapsing behavior
-        players = GameObject.FindGameObjectsWithTag("Player"); // Find all players in the scene
-        platformManager = FindObjectOfType<PlatformManager>(); // Find the platform manager in the scene
-        canMove = true; // Allow the platform to move
+        platformCollapsingBehavior = GetComponent<PlatformCollapsingBehavior>();
+        players = GameObject.FindGameObjectsWithTag("Player"); 
+        platformManager = FindObjectOfType<PlatformManager>(); 
         InitializePlatform();
     }
     private void Update()
     {
-        camera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>(); // Find the camera in the scene
-        MovePlatform();
+        camera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
     }
     /// <summary>
     /// Initializes the platform based on its type and speed.
@@ -39,6 +35,7 @@ public class PlatformScript : MonoBehaviour
     /// <returns></returns>
     public void InitializePlatform()
     {
+        canMove = true; 
         switch (platformType)
         {
             case PlatformType.Normal:
@@ -55,64 +52,8 @@ public class PlatformScript : MonoBehaviour
                 break;
             case PlatformType.Extending:
                 platformIndex = 3;
-                speed = normalSpeed; // Set a default speed for extending platforms
+                speed = normalSpeed; 
                 break;
-        }
-        SetPlatformActive(platformIndex); 
-    }
-    /// <summary>
-    /// Moves the platform based on its type and speed.
-    /// </summary>
-    /// <returns></returns>
-    private void MovePlatform()
-    {
-        if(canMove == false)
-        {
-            return; // Exit if the platform cannot move
-        }
-        else
-        {
-            // Move the platform based on its speed and type
-            switch (platformType)
-            {
-                case PlatformType.Normal:
-                    transform.Translate(Vector2.down* speed * Time.deltaTime); 
-                    DestroyPlatform();
-                break;
-                case PlatformType.Collapsing:
-                    transform.Translate(Vector2.down * speed * Time.deltaTime);
-                break;
-                case PlatformType.Spike:
-                    transform.Translate(Vector2.down * speed * Time.deltaTime);
-                break;
-            }
-        }
-    }
-    /// <summary>
-    /// Set the platform to active when index mnatches
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-    public void SetPlatformActive(int index)
-    {
-        if (index == platformIndex)
-        {
-            if (platformIndex >= 0 && platformIndex < prefab.Count)
-            {
-                prefab[platformIndex].SetActive(true);
-                isMoving = true;
-            }
-            else
-            {
-                Debug.LogWarning("Invalid platformIndex: " + platformIndex);
-                isMoving = false;
-            }
-            isMoving = true;
-        }
-        else
-        {
-            prefab[platformIndex].SetActive(false);
-            isMoving = false;
         }
     }
     /// <summary>
@@ -154,7 +95,6 @@ public class PlatformScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            canMove = false;
             SetEffect(platformType); 
         }
     }
@@ -165,7 +105,7 @@ public class PlatformScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            canMove = true; // Allow the platform to move again
+            
         }
     }
 }

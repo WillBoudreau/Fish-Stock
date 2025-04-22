@@ -6,12 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public enum gameState { MainMenu, InGame, Paused, GameOver, Winner, Loading, Credits }//The game states;
     [Header("Game Variables")]
-    [SerializeField] private gameState currentGameState = gameState.MainMenu;//The current game state
-    [SerializeField] private gameState previousGameState = gameState.MainMenu;//The previous game state
+    public gameState currentGameState = gameState.MainMenu;//The current game state
+    public gameState previousGameState = gameState.MainMenu;//The previous game state
     public GameObject playerPrefab;//The player prefab
     [SerializeField] private bool isPaused;//Is the game paused
     [SerializeField] private bool hasWon;//Has the player won
     [SerializeField] private bool isGameOver;//Is the game over
+    public int checkpointIndex = 0;
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
