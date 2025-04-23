@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Door
   - Pushable
+  - Punchable
   layers:
   - Default
   - TransparentFX
