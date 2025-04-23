@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5811168140323093052}
   - component: {fileID: 9171067077149743392}
   - component: {fileID: 7728671610455691567}
+  - component: {fileID: 6855018208835152508}
   - component: {fileID: 7544893191883169549}
   - component: {fileID: 5755069722277625686}
   m_Layer: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc23f15df9ab51945bbbd52f23d10eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   speed: 4
   groundMask:
     serializedVersion: 2
@@ -107,6 +109,7 @@ MonoBehaviour:
   jumpingKey: 273
   leftButton: 276
   rightButton: 275
+  faceDir: 0
 --- !u!114 &7728671610455691567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +125,20 @@ MonoBehaviour:
   playerHP: 0
   playerHPtext: {fileID: 0}
   playerName: Player 2
+--- !u!114 &6855018208835152508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230706095018835741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40aa39a2eaf2a524a84f21be4036951f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObj: {fileID: 0}
+  pushButton: 112
 --- !u!61 &7544893191883169549
 BoxCollider2D:
   m_ObjectHideFlags: 0
