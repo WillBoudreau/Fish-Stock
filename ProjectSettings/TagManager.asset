@@ -8,6 +8,8 @@ TagManager:
   - Camera
   - Platform
   - Door
+  - Pushable
+  - Punchable
   layers:
   - Default
   - TransparentFX
