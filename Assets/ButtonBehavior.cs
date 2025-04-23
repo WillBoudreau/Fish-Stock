@@ -24,6 +24,7 @@ public class ButtonBehavior : MonoBehaviour
     {
         if (other.gameObject.name == playerNameID) // Check if the player is touching the button
         {
+            Debug.Log("Player is touching the button: " + other.gameObject.name); // Log the player who is touching the button
             ActivateObjects(); 
         }
     }
@@ -44,9 +45,15 @@ public class ButtonBehavior : MonoBehaviour
         foreach (GameObject obj in objectsToActivate) // Loop through each object in the array
         {
            if(obj.tag == "Door")
-           {
+            {
+                Debug.Log("Activating door: " + obj.name); // Log the door being activated
                 obj.GetComponent<DoorBehavior>().OpenTheDoor(); // Open the door
-           }
+            }
+            else if(obj.tag == "MovablePlatform")
+            {
+                Debug.Log("Activating platform: " + obj.name); // Log the platform being activated
+                obj.GetComponent<MovingPlatform>().StartMovingPlatform(); // Activate the platform
+            }
         }
     }
     /// <summary>
@@ -60,6 +67,10 @@ public class ButtonBehavior : MonoBehaviour
             if (obj.tag == "Door")
             {
                 obj.GetComponent<DoorBehavior>().CloseTheDoor(); // Close the door
+            }
+            else if (obj.tag == "MovablePlatform")
+            {
+                obj.GetComponent<MovingPlatform>().StopMovingPlatform(); // Deactivate the platform
             }
         }
     }
