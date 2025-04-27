@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     public gameState currentGameState = gameState.MainMenu;//The current game state
     public gameState previousGameState = gameState.MainMenu;//The previous game state
     public GameObject playerPrefab;//The player prefab
+    public GameObject player2Prefab;//The player prefab for player 2
     [SerializeField] private bool isPaused;//Is the game paused
     [SerializeField] private bool hasWon;//Has the player won
     [SerializeField] private bool isGameOver;//Is the game over
-    public int checkpointIndex = 0;
+    public Camera mainCamera;//The main camera
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
@@ -20,13 +21,18 @@ public class GameManager : MonoBehaviour
     {
         uIManager = FindObjectOfType<UIManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        mainCamera = Camera.main;
         SetGameState(currentGameState);//Set the game state to the current game state
     }
     void Update()
     {
         if(levelManager.sceneName == "GamePlayScene")
         {
-            SetGameState(gameState.InGame);//Set the game state to in game
+            SetGameState(gameState.InGame);
+        }
+        else if(levelManager.sceneName == "Level1")
+        {
+            SetGameState(gameState.InGame);
         }
     }
 
@@ -42,11 +48,11 @@ public class GameManager : MonoBehaviour
         {
             case gameState.MainMenu:
                 uIManager.SwitchUI(uIManager.mainMenu);
-                playerPrefab.SetActive(false);
+                SetPlayerState(false);
                 break;
             case gameState.InGame:
                 uIManager.SwitchUI(uIManager.hUD);
-                playerPrefab.SetActive(true);
+                SetPlayerState(true);
                 break;
             case gameState.Paused:
                 uIManager.SwitchUI(uIManager.pauseMenu);
@@ -64,6 +70,15 @@ public class GameManager : MonoBehaviour
                 uIManager.SwitchUI(uIManager.creditsScreen);
                 break;
         }
+    }
+    /// <summary>
+    /// Sers the state of the player to the specified state
+    /// </summary>
+    /// <param name="state">The state to set the player to</param>
+    public void SetPlayerState(bool state)
+    {
+        playerPrefab.SetActive(state);
+        player2Prefab.SetActive(state);
     }
 
     public void RestartGame()

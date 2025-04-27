@@ -12,14 +12,15 @@ public class LevelManager : MonoBehaviour
     [Header("Level variables")]
     [SerializeField] private int currentLevelIndex = 0;//The current level index
     private GameObject playerPrefab;//The player prefab
+    private GameObject player2Prefab;//The player prefab for player 2
     [SerializeField] private GameObject spawnPoint;//The spawn point for the player
+    [SerializeField] private GameObject spawnPoint2;//The spawn point for player 2
     public List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();//The list of scenes to load
     public string sceneName;//The name of the scene to load
     [SerializeField] private float sceneLoadTime = 2.0f;//The time it takes to load a scene
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private GameManager gameManager;//The game manager
-    [SerializeField] private PlatformManager platformManager;//The platform manager
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class LevelManager : MonoBehaviour
             gameManager = FindObjectOfType<GameManager>();
         }
         playerPrefab = gameManager.playerPrefab;//Get the player prefab from the GameManager
+        player2Prefab = gameManager.player2Prefab;//Get the player prefab for player 2 from the GameManager
     }
     /// <summary>
     /// Load Scene for the buttons in the UI
@@ -49,20 +51,20 @@ public class LevelManager : MonoBehaviour
     {
         sceneName = SceneManager.GetActiveScene().name;
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        spawnPoint2 = GameObject.FindGameObjectWithTag("SpawnPoint2");
         Debug.Log("SpawnPoint found: " + spawnPoint.name);
-        if(platformManager == null)
-        {
-            platformManager = FindObjectOfType<PlatformManager>();
-        }
-        if(spawnPoint != null)
+        Debug.Log("SpawnPoint2 found: " + spawnPoint2.name);
+        if(spawnPoint != null && spawnPoint2 != null)
         {
             Debug.Log("SpawnPoint found: " + spawnPoint.name);
+            Debug.Log("SpawnPoint2 found: " + spawnPoint2.name);
 
             playerPrefab.transform.position = spawnPoint.transform.position;
+            player2Prefab.transform.position = spawnPoint2.transform.position;
         }
         if (scene.name == sceneName)
         {
-            playerPrefab.SetActive(true);
+            //playerPrefab.SetActive(true);
             Debug.Log("Scene loaded: " + scene.name);
             SceneManager.sceneLoaded -= OnSceneLoaded;
             StartCoroutine(LoadLevel(sceneName));
@@ -71,7 +73,7 @@ public class LevelManager : MonoBehaviour
         {
             gameManager.SetGameState(GameManager.gameState.MainMenu);
             Time.timeScale = 1;
-            playerPrefab.SetActive(false);
+            //playerPrefab.SetActive(false);
         }
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
