@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 5811168140323093052}
   - component: {fileID: 9171067077149743392}
   - component: {fileID: 7728671610455691567}
-  - component: {fileID: 6855018208835152508}
-  - component: {fileID: 4710667469342338781}
   - component: {fileID: 7544893191883169549}
   - component: {fileID: 5755069722277625686}
   m_Layer: 0
@@ -126,34 +124,6 @@ MonoBehaviour:
   playerHP: 0
   playerHPtext: {fileID: 0}
   playerName: Player 2
---- !u!114 &6855018208835152508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230706095018835741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa39a2eaf2a524a84f21be4036951f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableObj: {fileID: 0}
-  pushButton: 112
---- !u!114 &4710667469342338781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230706095018835741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dce87cb7523bb1488081b8703bf78ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableObj: {fileID: 0}
-  pushButton: 111
 --- !u!61 &7544893191883169549
 BoxCollider2D:
   m_ObjectHideFlags: 0
