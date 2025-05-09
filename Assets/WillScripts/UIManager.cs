@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     public GameObject winnerScreen;//The winner screen UI
     public GameObject loadingScreen;//The loading screen UI
     public GameObject creditsScreen;//The credits screen UI
-    public int currentUIIndex = 0;//The current UI index
     [Header("Loading Screen Elements")]
     public float fadeTime = 1.0f;//The time it takes to fade in and out
     public Image loadingImage;//The loading image
@@ -65,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Loading Screen Started");
        StartCoroutine(LoadingUIFadeIn());
-       StartCoroutine(DelayedSwitchUI(fadeTime, newUI));
+       StartCoroutine(DelayedSwitchUI(0, newUI));
     }
 
     /// <summary>
@@ -74,13 +73,15 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator LoadingUIFadeIn()
     {
-        SetFalse();
-        float timer = 0;
+        Debug.Log("Loading Screen Fade In Started");
         loadingScreen.SetActive(true);
+        //SetFalse();
+        //loadingScreen.SetActive(true);
+        float timer = 0;
 
         while(timer < fadeTime)
         {
-            loadingCanvasGroup.alpha = Mathf.Lerp(0,1, timer / fadeTime);
+            //loadingCanvasGroup.alpha = Mathf.Lerp(0,1, timer / fadeTime);
             timer += Time.deltaTime;
             yield return null;
         }
