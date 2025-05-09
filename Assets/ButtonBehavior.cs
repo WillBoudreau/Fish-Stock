@@ -20,17 +20,23 @@ public class ButtonBehavior : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == playerNameID)
+        {
+            ActivateObjects(); 
+        }
+    }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.name == playerNameID) // Check if the player is touching the button
+        if (other.gameObject.name == playerNameID)
         {
-            Debug.Log("Player is touching the button: " + other.gameObject.name); // Log the player who is touching the button
-            ActivateObjects(); 
+            ActivateObjects();
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.name == playerNameID) // Check if the player is leaving the button
+        if (other.gameObject.name == playerNameID)
         {
             DeactivateObjects(); 
         }

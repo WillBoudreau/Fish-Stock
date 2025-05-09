@@ -8,6 +8,7 @@ public class DoorBehavior : MonoBehaviour
     [SerializeField] private float doorSpeed = 2f; // Speed of the door movement
     [SerializeField] private float doorDistance = 5f; // Distance the door moves
     [SerializeField] private bool isOpen = false; // Is the door open or closed
+    [SerializeField] private bool isStayOpen = false; // Is the door stay open or not
     [SerializeField] private Vector3 closedPosition; // Closed position of the door
     [SerializeField] private Vector3 openPosition; // Open position of the door
 
@@ -34,7 +35,6 @@ public class DoorBehavior : MonoBehaviour
         if (!isOpen)
         {
             StartCoroutine(MoveDoor(openPosition));
-            isOpen = true;
         }
     }
     /// <summary>
@@ -42,10 +42,9 @@ public class DoorBehavior : MonoBehaviour
     /// </summary>
     public void CloseTheDoor()
     {
-        if (isOpen)
+        if (isOpen && !isStayOpen)
         {
             StartCoroutine(MoveDoor(closedPosition));
-            isOpen = false;
         }
     }
     /// <summary>
@@ -60,6 +59,24 @@ public class DoorBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, doorSpeed * Time.deltaTime);
             yield return null;
         }
+        if(isOpen)
+        {
+            isOpen = false; 
+        }
+        else
+        {
+            isOpen = true; 
+        }
         transform.position = targetPosition; // Ensure the door reaches the exact position
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(isOpen)
+            {
+                MoveDoor(openPosition);
+            }
+        }
     }
 }

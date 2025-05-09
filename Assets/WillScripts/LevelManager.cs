@@ -47,6 +47,10 @@ public class LevelManager : MonoBehaviour
         uIManager.UILoadingScreen(uIManager.loadingScreen);
         StartCoroutine(WaitForScreenLoad(sceneName));
     }
+    /// <summary>
+    /// </summary>
+
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         sceneName = SceneManager.GetActiveScene().name;
@@ -85,6 +89,18 @@ public class LevelManager : MonoBehaviour
     {
         //Load the scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        if(sceneName == "Level1")
+        {
+            currentLevelIndex = 1;
+        }
+        else if (sceneName == "Level2")
+        {
+            currentLevelIndex = 2;
+        }
+        else if (sceneName == "Level3")
+        {
+            currentLevelIndex = 3;
+        }
         asyncLoad.allowSceneActivation = false;
         scenesToLoad.Add(asyncLoad);
         while (!asyncLoad.isDone)
