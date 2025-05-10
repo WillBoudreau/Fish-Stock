@@ -70,7 +70,7 @@ public class PushableObject : MonoBehaviour
 
 
 
-        if (isPush)
+        if (isPush && !playerController.isJumping)
         {
             pushBody.velocity = new Vector2(playerController.body.velocity.x , pushBody.velocity.y);
         }
@@ -82,12 +82,14 @@ public class PushableObject : MonoBehaviour
         if (!isPush)
         {
             isPush = true;
+            playerController.isPushing = true;
             pushBody.isKinematic = false;
             Debug.Log("Push"); 
         }
         else
         {
             isPush = false;
+            playerController.isPushing = false; 
             pushBody.bodyType = RigidbodyType2D.Static;
             Debug.Log("Stop pushing"); 
         }

@@ -6,6 +6,7 @@ public class PushableController : MonoBehaviour
 {
     public GameObject interactableObj = null;
     public KeyCode pushButton;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class PushableController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Pushable"))
         {
@@ -30,7 +31,7 @@ public class PushableController : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D col)
+    void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Pushable"))
         {

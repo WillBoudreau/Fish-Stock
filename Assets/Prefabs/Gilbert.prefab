@@ -106,10 +106,15 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  groundMask2:
+    serializedVersion: 2
+    m_Bits: 128
   jumpingKey: 273
   leftButton: 276
   rightButton: 275
   faceDir: 0
+  isPushing: 0
+  isJumping: 0
 --- !u!114 &7728671610455691567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +176,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006652966, y: 0.3155485}
+  m_Offset: {x: 0.008621305, y: 0.3155485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.45833334, y: -0.071428575}
@@ -182,7 +187,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2986141, y: 0.58003753}
+  m_Size: {x: 0.25265682, y: 0.58003753}
   m_EdgeRadius: 0
 --- !u!50 &5755069722277625686
 Rigidbody2D:
