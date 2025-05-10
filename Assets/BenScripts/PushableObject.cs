@@ -47,7 +47,7 @@ public class PushableObject : MonoBehaviour
     {
         if(playerOne == null) 
         {
-            playerOne = GameObject.Find("Player");
+            playerOne = GameObject.Find("Blob");
 
             if (playerOne != null)
             {
