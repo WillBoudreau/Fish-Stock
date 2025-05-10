@@ -17,15 +17,14 @@ public class GameManager : MonoBehaviour
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
+    [SerializeField] private MusicManager musicManager;//The music manager
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        musicManager = FindObjectOfType<MusicManager>();
         mainCamera = Camera.main;
         SetGameState(currentGameState);//Set the game state to the current game state
-    }
-    void Update()
-    {
         if(levelManager.sceneName == "GamePlayScene")
         {
             SetGameState(gameState.InGame);
@@ -34,6 +33,9 @@ public class GameManager : MonoBehaviour
         {
             SetGameState(gameState.InGame);
         }
+    }
+    void Update()
+    {
     }
 
     /// <summary>
