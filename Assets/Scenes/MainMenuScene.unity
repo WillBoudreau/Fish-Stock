@@ -445,6 +445,7 @@ MonoBehaviour:
   sceneLoadTime: 5
   uIManager: {fileID: 1635044942}
   gameManager: {fileID: 0}
+  musicManager: {fileID: 0}
 --- !u!1 &220082720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1375,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   uIManager: {fileID: 0}
   levelManager: {fileID: 0}
+  musicManager: {fileID: 0}
 --- !u!1 &473845493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,7 +1893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 638053129}
   mainMenuClip: {fileID: 8300000, guid: 09a8cfbd5caefcb4c906644ac6fc0aad, type: 3}
-  levelClip: {fileID: 8300000, guid: 54e84b4f273bbe14ea5c55c0b25f23f9, type: 3}
+  levelClip: {fileID: 8300000, guid: f443106f60683774d8bb81ba103bf223, type: 3}
   isPlaying: 0
   audioMixer: {fileID: 24100000, guid: 0ec184fc068c0b94fa9c0edecf46e338, type: 2}
 --- !u!1 &642715404
@@ -2750,18 +2752,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level1
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 441163323}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1635044942}
