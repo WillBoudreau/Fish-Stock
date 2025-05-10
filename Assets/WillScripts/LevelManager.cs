@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private GameManager gameManager;//The game manager
+    [SerializeField] private MusicManager musicManager;//The music manager
 
     void Start()
     {
@@ -33,6 +34,10 @@ public class LevelManager : MonoBehaviour
         if(gameManager == null)
         {
             gameManager = FindObjectOfType<GameManager>();
+        }
+        if(musicManager == null)
+        {
+            musicManager = FindObjectOfType<MusicManager>();
         }
         playerPrefab = gameManager.playerPrefab;//Get the player prefab from the GameManager
         player2Prefab = gameManager.player2Prefab;//Get the player prefab for player 2 from the GameManager
@@ -47,9 +52,6 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         StartCoroutine(WaitForScreenLoad(sceneName));
     }
-    /// <summary>
-    /// </summary>
-
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -68,16 +70,21 @@ public class LevelManager : MonoBehaviour
         }
         if (scene.name == sceneName)
         {
-            //playerPrefab.SetActive(true);
             Debug.Log("Scene loaded: " + scene.name);
             SceneManager.sceneLoaded -= OnSceneLoaded;
             StartCoroutine(LoadLevel(sceneName));
+            if(scene.name == "Level1")
+            {
+                musicManager.PlayMusic(true, "Gameplay");
+                gameManager.SetGameState(GameManager.gameState.InGame);
+                gameManager.SetPlayerState(true);
+                Time.timeScale = 1;
+            }
         }
         else if(scene.name.StartsWith("Main"))
         {
             gameManager.SetGameState(GameManager.gameState.MainMenu);
             Time.timeScale = 1;
-            //playerPrefab.SetActive(false);
         }
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
