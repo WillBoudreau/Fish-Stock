@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject settingsScreen;//The settings screen UI
     [Header("Loading Screen Elements")]
     public float fadeTime = 1.0f;//The time it takes to fade in and out
-    public Image loadingImage;//The loading image
+    public Slider loadingBar;//The loading bar
     public CanvasGroup loadingCanvasGroup;//The loading canvas group
     [Header("Class References")]
     [SerializeField] private GameManager gameManager;//The game manager
@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
         }
         loadingCanvasGroup.alpha = 0;
         loadingScreen.SetActive(false);
-        loadingImage.fillAmount = 0;
+        loadingBar.value = 0;
     }
     /// <summary>
     /// Delays the switch to the new UI
@@ -133,11 +133,11 @@ public class UIManager : MonoBehaviour
     public IEnumerator LoadingBarProgress()
     {
         float timer = 0;
-        loadingImage.fillAmount = 0;
+        loadingBar.value = 0;
         while (timer < 1)
         {
             timer += Time.deltaTime / 2f;
-            loadingImage.fillAmount += Time.deltaTime / 2f;
+            loadingBar.value = Mathf.Lerp(0, 1, timer);
             yield return null;
         }
         yield return new WaitForSeconds(fadeTime);
