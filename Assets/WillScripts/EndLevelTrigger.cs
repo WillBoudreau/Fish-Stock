@@ -43,7 +43,14 @@ public class EndLevelTrigger : MonoBehaviour
         if(playerPrefab != null && player2Prefab != null)
         {
             Debug.Log("Players have the required objects to move on to the next level.");
-            levelManager.LoadScene(nextLevelName); // Load the next level
+            if(nextLevelName == "Win")
+            {
+                Debug.Log("Players have won the game!");
+            }
+            else
+            {
+                levelManager.LoadScene(nextLevelName); // Load the next level
+            }
         }
         else
         {

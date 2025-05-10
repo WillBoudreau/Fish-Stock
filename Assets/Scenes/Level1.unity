@@ -228,13 +228,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 10.672
       objectReference: {fileID: 0}
+    - target: {fileID: 522750571307767763, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
+      propertyPath: playerNameID
+      value: Gilbert
+      objectReference: {fileID: 0}
     - target: {fileID: 886532321724661346, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: isStayOpen
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1052827825530482031, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35999966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1105427815037954424, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.y
@@ -266,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487389581310997351, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.31
+      value: 10.58
       objectReference: {fileID: 0}
     - target: {fileID: 4189875445015816919, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalScale.x
@@ -286,7 +290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5180574539692602022, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.39
+      value: 15.11
       objectReference: {fileID: 0}
     - target: {fileID: 5196854488026227525, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.x
@@ -396,9 +400,17 @@ PrefabInstance:
       propertyPath: doorDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7933016065155042087, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
+      propertyPath: playerNameID
+      value: Gilbert
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124922123070297618, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
+      propertyPath: playerNameID
+      value: Gilbert
+      objectReference: {fileID: 0}
     - target: {fileID: 8727076764169006254, guid: 3ff2310b2bec40e4e88b1d1054324597, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7199993
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1027,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 0}
   player2Prefab: {fileID: 0}
-  nextLevelName: Level3
+  nextLevelName: Level2
   uIManager: {fileID: 0}
   levelManager: {fileID: 0}
   gameManager: {fileID: 0}
