@@ -12,6 +12,7 @@ TagManager:
   - Punchable
   - MovablePlatform
   - SpawnPoint2
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Water
   - UI
   - Platform
-  - 
+  - Block
   - 
   - 
   - 
