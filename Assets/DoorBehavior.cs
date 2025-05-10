@@ -59,6 +59,7 @@ public class DoorBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, doorSpeed * Time.deltaTime);
             yield return null;
         }
+        transform.position = targetPosition; // Ensure the door reaches the exact position
         if(isOpen)
         {
             isOpen = false; 
@@ -67,16 +68,19 @@ public class DoorBehavior : MonoBehaviour
         {
             isOpen = true; 
         }
-        transform.position = targetPosition; // Ensure the door reaches the exact position
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if(isOpen)
-            {
-                MoveDoor(openPosition);
-            }
+            OpenTheDoor();
+        }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OpenTheDoor();
         }
     }
 }

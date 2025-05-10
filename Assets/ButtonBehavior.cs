@@ -52,12 +52,10 @@ public class ButtonBehavior : MonoBehaviour
         {
            if(obj.tag == "Door")
             {
-                Debug.Log("Activating door: " + obj.name); // Log the door being activated
                 obj.GetComponent<DoorBehavior>().OpenTheDoor(); // Open the door
             }
             else if(obj.tag == "MovablePlatform")
             {
-                Debug.Log("Activating platform: " + obj.name); // Log the platform being activated
                 obj.GetComponent<MovingPlatform>().StartMovingPlatform(); // Activate the platform
             }
         }

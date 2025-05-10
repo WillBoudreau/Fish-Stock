@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public GameObject winnerScreen;//The winner screen UI
     public GameObject loadingScreen;//The loading screen UI
     public GameObject creditsScreen;//The credits screen UI
+    public GameObject settingsScreen;//The settings screen UI
     [Header("Loading Screen Elements")]
     public float fadeTime = 1.0f;//The time it takes to fade in and out
     public Image loadingImage;//The loading image
@@ -25,6 +26,12 @@ public class UIManager : MonoBehaviour
     [Header("Class References")]
     [SerializeField] private GameManager gameManager;//The game manager
     [SerializeField] private LevelManager levelManager;//The level manager
+    [SerializeField] private SoundManager soundManager;//The sound manager
+    [SerializeField] private MusicManager musicManager;//The music manager
+    [Header("UI Elements")]
+    [SerializeField] Slider masterSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
 
 
     void Start()
@@ -46,6 +53,7 @@ public class UIManager : MonoBehaviour
         winnerScreen.SetActive(false);
         loadingScreen.SetActive(false);
         creditsScreen.SetActive(false);
+        settingsScreen.SetActive(false);
     }
 
     /// <summary>
@@ -135,5 +143,44 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(fadeTime);
         StartCoroutine(LoadingUIFadeOut());
     }
-    
+    /// <summary>
+    /// Sets the volume of the music and sound effects based on the sliders.
+    /// </summary>
+    public void SetVolume()
+    {
+        if(musicManager.audioMixer.GetFloat("Master", out float masterVolume))
+        {
+            masterSlider.value = masterVolume;
+        }
+        if(musicManager.audioMixer.GetFloat("Music", out float musicVolume))
+        {
+            musicSlider.value = musicVolume;
+        }
+        if (soundManager.audioMixer.GetFloat("SFX", out float sfxVolume))
+        {
+            sfxSlider.value = sfxVolume;
+        }
+    }
+    /// <summary>
+    /// Sets the volume based on the slider values.
+    /// </summary>
+    /// param name = "group"></param>
+    public void SetSliderVolume(string group)
+    {
+        switch (group)
+        {
+            case "Master":
+                musicManager.SetVolume(masterSlider.value, "Master");
+                break;
+            case "Music":
+                musicManager.SetVolume(musicSlider.value, "Music");
+                break;
+            case "SFX":
+                soundManager.ChangeVolume(sfxSlider.value, "SFX");
+                break;
+            default:
+                Debug.LogWarning("Invalid volume group: " + group);
+                break;
+        }
+    }
 }
