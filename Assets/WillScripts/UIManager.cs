@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject loadingScreen;//The loading screen UI
     public GameObject creditsScreen;//The credits screen UI
     public GameObject settingsScreen;//The settings screen UI
+    public GameObject boatSelectionScreen;//The boat selection screen UI
     [Header("Loading Screen Elements")]
     public float fadeTime = 1.0f;//The time it takes to fade in and out
     public Slider loadingBar;//The loading bar
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
         loadingScreen.SetActive(false);
         creditsScreen.SetActive(false);
         settingsScreen.SetActive(false);
+        boatSelectionScreen.SetActive(false);
     }
 
     /// <summary>
