@@ -21,7 +21,7 @@ public class PunchableController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Punchable"))
         {
@@ -29,7 +29,7 @@ public class PunchableController : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D col)
+    void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Punchable"))
         {

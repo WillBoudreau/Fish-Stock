@@ -68,4 +68,20 @@ public class MechanicalPlatform : MonoBehaviour
         moving = true;
         isRight = false;
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Pushable"))
+        {
+            coll.gameObject.transform.SetParent(transform); 
+        }
+    }
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Pushable"))
+        {
+            coll.gameObject.transform.SetParent(null); 
+        }
+    }
+
 }
