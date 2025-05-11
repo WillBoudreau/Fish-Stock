@@ -121,6 +121,7 @@ public class BoatSelection : MonoBehaviour
     /// </summary>
     public void Player1Ready()
     {
+        Debug.Log("Player 1 is ready"); // Debug log for player 1 readiness
         player1Ready = true;
         player1BoatText.text = "Ready"; // Update the text to show that player 1 is ready
         player1BoatButton.interactable = false; // Disable the player 1 boat button
@@ -131,6 +132,7 @@ public class BoatSelection : MonoBehaviour
     /// </summary>
     public void Player2Ready()
     {
+        Debug.Log("Player 2 is ready"); // Debug log for player 2 readiness
         player2Ready = true;
         player2BoatText.text = "Ready"; // Update the text to show that player 2 is ready
         player2BoatButton.interactable = false; // Disable the player 2 boat button
