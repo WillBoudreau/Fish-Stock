@@ -4699,25 +4699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8665136abd87ffe48a618b3194887cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boats:
-  - {fileID: -2253911629886400664, guid: 805cb56844781364a9d5bb22085d9b32, type: 3}
-  - {fileID: -2253911629886400664, guid: c0f0423b7956322469aae9bdd633b6cb, type: 3}
-  - {fileID: -2253911629886400664, guid: 4ec25f550679fe945b6393efc2575c1a, type: 3}
-  player1Boat: {fileID: 795448947}
-  player2Boat: {fileID: 117602268}
-  player1BoatSpriteRenderer: {fileID: 1336437905}
-  player2BoatSpriteRenderer: {fileID: 2021732791}
-  player1BoatIndex: 0
-  player2BoatIndex: 0
-  player1Ready: 0
-  player1BoatButton: {fileID: 506795378}
-  player1BoatText: {fileID: 583683655}
-  player2Ready: 0
-  player2BoatButton: {fileID: 1292802245}
-  player2BoatText: {fileID: 1631997460}
-  gameManager: {fileID: 441163325}
-  levelManager: {fileID: 184511861}
-  uIManager: {fileID: 1635044942}
 --- !u!1 &1156630691
 GameObject:
   m_ObjectHideFlags: 0
@@ -5958,11 +5939,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314400767}
   m_CullTransparentMesh: 1
---- !u!212 &1336437905 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1488632882404184966, guid: 9c5ad13473278804789cf35175d6531c, type: 3}
-  m_PrefabInstance: {fileID: 1548264628}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348512995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7284,7 +7260,6 @@ MonoBehaviour:
   loadingScreen: {fileID: 903839653}
   creditsScreen: {fileID: 1590941918}
   settingsScreen: {fileID: 1435178740}
-  boatSelectionScreen: {fileID: 1155104394}
   fadeTime: 4
   loadingBar: {fileID: 1284180423}
   loadingCanvasGroup: {fileID: 903839655}
@@ -9101,11 +9076,6 @@ Transform:
 --- !u!1 &2021732790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6230706095018835741, guid: dbbab623015a45243adb8dd0321c3693, type: 3}
-  m_PrefabInstance: {fileID: 2021732788}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &2021732791 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5230482052770257191, guid: dbbab623015a45243adb8dd0321c3693, type: 3}
   m_PrefabInstance: {fileID: 2021732788}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2023428421
