@@ -46,6 +46,7 @@ public class EndLevelTrigger : MonoBehaviour
             if(nextLevelName == "Win")
             {
                 Debug.Log("Players have won the game!");
+                uIManager.UILoadingScreen(uIManager.winnerScreen); // Load the winner screen
             }
             else
             {

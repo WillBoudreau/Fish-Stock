@@ -88,12 +88,19 @@ public class BoatSelection : MonoBehaviour
     /// </summary>
     private void TransferSpriteToPlayer1Boat(float alpha)
     {
-        if (player1BoatIndex >= 0 && player1BoatIndex < boats.Length)
+        if (player1BoatIndex > 0 && player1BoatIndex < boats.Length)
         {
             Sprite selectedBoatSprite = boats[player1BoatIndex].GetComponent<SpriteRenderer>().sprite;
             Color color = player1Boat.color;
             color.a = alpha;
             player1Boat.sprite = selectedBoatSprite;
+            player1Boat.color = color;
+        }
+        else if(player1BoatIndex == 0)
+        {
+            player1Boat.sprite = null; // Set to null if no boat is selected
+            Color color = player1Boat.color;
+            color.a = 0f; // Set alpha to 0 if no boat is selected
             player1Boat.color = color;
         }
     }
@@ -103,12 +110,19 @@ public class BoatSelection : MonoBehaviour
     /// <param name="alpha">The alpha value for the image</param>
     private void TransferSpriteToPlayer2Boat(float alpha)
     {
-        if (player2BoatIndex >= 0 && player2BoatIndex < boats.Length)
+        if (player2BoatIndex > 0 && player2BoatIndex < boats.Length)
         {
             Sprite selectedBoatSprite = boats[player2BoatIndex].GetComponent<SpriteRenderer>().sprite;
             Color color = player2Boat.color;
             color.a = alpha;
             player2Boat.sprite = selectedBoatSprite;
+            player2Boat.color = color;
+        }
+        else if(player2BoatIndex == 0)
+        {
+            player2Boat.sprite = null; // Set to null if no boat is selected
+            Color color = player2Boat.color;
+            color.a = 0f; // Set alpha to 0 if no boat is selected
             player2Boat.color = color;
         }
     }
