@@ -10,6 +10,8 @@ public class EndLevelTrigger : MonoBehaviour
     [SerializeField] private GameObject player2Prefab;//The player prefab for player 2
     [SerializeField] private string nextLevelName;//The name of the next level to load
     [SerializeField] private bool isAbleToMoveOn = false;//Is the player able to move on to the next level
+    [SerializeField] private List<GameObject> requiredObjects = new List<GameObject>();//The list of required objects to move on to the next level
+    [SerializeField] private int numberOfPlayers = 0;//The number of players in the trigger before moving on
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
@@ -40,6 +42,19 @@ public class EndLevelTrigger : MonoBehaviour
     /// </summary>
     void CheckPlayers()
     {
+        foreach (GameObject coin in requiredObjects)
+        {
+            if(coin.GetComponent<PickUpObject>().isPickedUp == true)
+            {
+                isAbleToMoveOn = true; 
+                Debug.Log("Player has the required objects to move on to the next level.");
+            }
+            else
+            {
+                isAbleToMoveOn = false; 
+                Debug.Log("Player does not have the required objects to move on to the next level.");
+            }
+        }
         if(isAbleToMoveOn)
         {
             //Check if the players have the required objects before moving on
@@ -53,6 +68,8 @@ public class EndLevelTrigger : MonoBehaviour
                 }
                 else
                 {
+                    playerPrefab.GetComponent<PlayerController>().enabled = false; // Disable player controls
+                    player2Prefab.GetComponent<PlayerController>().enabled = false; // Disable player 2 controls
                     levelManager.LoadScene(nextLevelName); // Load the next level
                 }
             }
@@ -68,22 +85,27 @@ public class EndLevelTrigger : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             Debug.Log("Player has entered the trigger to move on to the next level.");
-            CheckPlayers();
+            numberOfPlayers++;
+            if(numberOfPlayers >= 2)
+            {
+                CheckPlayers(); // Check if the players have the required objects before moving on
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        //Check if the player has exited the trigger
+        if(other.CompareTag("Player"))
+        {
+            Debug.Log("Player has exited the trigger to move on to the next level.");
+            numberOfPlayers--;
         }
     }
     void Update()
     {
         foreach (GameObject coin in GameObject.FindGameObjectsWithTag("PickUp"))
         {
-            if(coin.GetComponent<PickUpObject>().isPickedUp == true)
-            {
-                isAbleToMoveOn = true;
-                Debug.Log("Player has picked up the required object to move on to the next level.");
-            }
-            else
-            {
-                isAbleToMoveOn = false;
-            }
+            requiredObjects.Add(coin);
         }
     }
 }

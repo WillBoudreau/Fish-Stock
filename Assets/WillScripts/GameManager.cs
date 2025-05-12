@@ -36,6 +36,18 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            levelManager.LoadScene("Level1");
+            SetGameState(gameState.InGame);
+            uIManager.SwitchUI(uIManager.hUD);
+        }
+        else if(Input.GetKeyDown(KeyCode.O))
+        {
+            levelManager.LoadScene("Level3");
+            SetGameState(gameState.InGame);
+            uIManager.SwitchUI(uIManager.hUD);
+        }
     }
 
     /// <summary>

@@ -7,13 +7,18 @@ public class LeverBehavior : MonoBehaviour
     [Header("Lever references")]
     [SerializeField] private GameObject[] leverObjects; // Array of lever objects to be activated
     [SerializeField] private string playerNameID; // Name of the player to check for
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player is in the trigger area: " + other.gameObject.name);
+            Debug.Log("Player name ID: " + playerNameID);
+            Debug.Log("Input key pressed: " + KeyCode.M);
             // Check if the player is within the trigger area
-            if (Input.GetKeyDown(KeyCode.E) && other.gameObject.name == playerNameID) 
+            if (Input.GetKeyDown(KeyCode.M)) 
             {
+                Debug.Log("Player lever activated: " + other.gameObject.name);
+                Debug.Log("Input key pressed: " + KeyCode.M);
                 Debug.Log("Player activated the lever: " + other.gameObject.name);
                 ActivateLever();
             }

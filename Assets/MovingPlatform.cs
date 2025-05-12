@@ -11,6 +11,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Vector3 startPosition; // Starting position of the platform
     [SerializeField] private Vector3 endPosition; // Ending position of the platform
     [SerializeField] private Vector3 movementAxis; // Axis of movement
+    [SerializeField] private bool isStayingUp = false; // Is the platform staying up or not
 
     void Start()
     {
@@ -71,7 +72,14 @@ public class MovingPlatform : MonoBehaviour
         if (isMoving)
         {
             isMoving = false;
-            StartCoroutine(MovePlatform(startPosition)); // Start moving the platform back to the start position
+            if(isStayingUp)
+            {
+                transform.position = endPosition; // Set the platform to the end position
+            }
+            else
+            {
+                StartCoroutine(MovePlatform(startPosition)); // Start moving the platform back to the start position
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)

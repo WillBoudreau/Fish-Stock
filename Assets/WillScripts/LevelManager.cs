@@ -67,6 +67,8 @@ public class LevelManager : MonoBehaviour
 
             playerPrefab.transform.position = spawnPoint.transform.position;
             player2Prefab.transform.position = spawnPoint2.transform.position;
+            playerPrefab.GetComponent<PlayerController>().enabled = true;
+            player2Prefab.GetComponent<PlayerController>().enabled = true;
         }
         if (scene.name == sceneName)
         {
