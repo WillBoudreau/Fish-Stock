@@ -5,11 +5,11 @@ using UnityEngine;
 public class MechanicalPlatform : MonoBehaviour
 {
 
-    public Vector2 Point1;
-    public Vector2 Point2;
+    public Vector3 Point1;
+    public Vector3 Point2;
 
-    private Vector2 tempPoint1;
-    private Vector2 tempPoint2;
+    private Vector3 tempPoint1;
+    private Vector3 tempPoint2;
 
     private float ElapseDuration;
     private float TimeElapse = 0;
@@ -49,7 +49,7 @@ public class MechanicalPlatform : MonoBehaviour
                 TimeElapse = 0;
             }
 
-            this.gameObject.transform.position = new Vector3(MvX, MvY, 0);
+            this.gameObject.transform.position = new Vector3(MvX, MvY, transform.position.z);
         }
     }
 
