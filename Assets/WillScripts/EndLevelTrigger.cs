@@ -12,6 +12,7 @@ public class EndLevelTrigger : MonoBehaviour
     [SerializeField] private bool isAbleToMoveOn = false;//Is the player able to move on to the next level
     [SerializeField] private List<GameObject> requiredObjects = new List<GameObject>();//The list of required objects to move on to the next level
     [SerializeField] private int numberOfPlayers = 0;//The number of players in the trigger before moving on
+    [SerializeField] private SpriteRenderer spriteRenderer;//The sprite renderer for the trigger
     [Header("Class References")]
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
@@ -79,6 +80,19 @@ public class EndLevelTrigger : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Strobe effect for the sprite renderer to indicate the end level trigger for the player
+    /// </summary>
+    public void StrobeEffect()
+    {
+        if(spriteRenderer != null)
+        {
+            Color strobeColor = Color.blue; 
+            spriteRenderer.color = new Color(strobeColor.r, strobeColor.g, strobeColor.b, Mathf.PingPong(Time.time, 1f)); // Strobe effect for the sprite renderer
+        }
+    }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         //Check if the player has entered the trigger
@@ -103,6 +117,7 @@ public class EndLevelTrigger : MonoBehaviour
     }
     void Update()
     {
+        StrobeEffect();
         foreach (GameObject coin in GameObject.FindGameObjectsWithTag("PickUp"))
         {
             requiredObjects.Add(coin);
