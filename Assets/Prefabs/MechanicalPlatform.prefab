@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3597485740315047817}
   - component: {fileID: 3044998385142742817}
   - component: {fileID: 2727411217050113453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MechanicalPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120ae7fbb2c42d3498123d163417d02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Point1: {x: 0, y: 0}
-  Point2: {x: 6.83, y: 10.16}
+  Point1: {x: 0, y: 0, z: 0}
+  Point2: {x: 6.83, y: 10.16, z: 0}
   moving: 0
   isRight: 1
 --- !u!61 &2727411217050113453
