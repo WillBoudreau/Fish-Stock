@@ -9,7 +9,8 @@ public class FollowingPlayers : MonoBehaviour
     public GameObject blob = null;
     public GameObject gilbert = null;
 
-    private float height; 
+    [SerializeField] private float height;
+    [SerializeField] private float initialHeight;  
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +22,21 @@ public class FollowingPlayers : MonoBehaviour
         // Find the GameObject named Gilbert
         gilbert = GameObject.Find("Gilbert");
 
+        // Gives a initial y position of the camera
+        initialHeight = 13.26244f; 
     }
 
     // Update is called once per frame
     void Update()
     {
         if (blob != null && gilbert != null)
-        {
+        {            
             height = Mathf.Max(blob.transform.position.y, gilbert.transform.position.y);
-            eyes.transform.position = new Vector3(eyes.transform.position.x, height, eyes.transform.position.z);
+
+            if (height > initialHeight)
+            {
+                eyes.transform.position = new Vector3(eyes.transform.position.x, height, eyes.transform.position.z);
+            }
         }
               
         

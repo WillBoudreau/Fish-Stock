@@ -6,15 +6,19 @@ public class MechanicalSwitch : MonoBehaviour
 {
 
     public MechanicalPlatform mPlatform;
+    Animator c_Animator; 
 
     [SerializeField] private bool activateMovement;
-    private bool inMotion; 
+    private bool inMotion;
+    private bool inGilbertHand = false; 
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        resetSwitch(); 
+        resetSwitch();
+        c_Animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,31 +30,56 @@ public class MechanicalSwitch : MonoBehaviour
             {
                 Debug.Log("Going Right");
                 mPlatform.GoRight();
-                activateMovement = false;
+                desactivateSwitch(); 
             }
             else if (mPlatform.isRight && !mPlatform.moving)
             {
                 Debug.Log("Going Left"); 
                 mPlatform.GoLeft();
-                activateMovement = false; 
+                desactivateSwitch();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.K) && !activateMovement && inGilbertHand)
+            activateSwitch(); 
+
+
+
     }
 
     private void resetSwitch() 
     {
-        activateMovement = false;
+        desactivateSwitch(); 
         inMotion = false;
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Player" && coll.gameObject.name == "Gilbert")
         {
-            Debug.Log("Colliding To Player"); 
-            activateMovement = true; 
+            Debug.Log("Colliding To Player");
+            inGilbertHand = true; 
         }
     }
 
+    void OnTriggerExit2D(Collider2D coll) 
+    {
+        if (coll.gameObject.tag == "Player" && coll.gameObject.name == "Gilbert")
+        {            
+            inGilbertHand = false;
+        }
+    }
+
+    void desactivateSwitch() 
+    {
+        activateMovement = false;        
+        c_Animator.SetBool("Used", false); 
+    }
+
+    void activateSwitch() 
+    {
+        activateMovement = true;
+        c_Animator.SetBool("Used", true);
+    }
 
 }
