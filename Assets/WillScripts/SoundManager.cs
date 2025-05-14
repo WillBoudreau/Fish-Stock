@@ -16,13 +16,14 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     /// <param name="clipName">The name of the music clip to play.</param>
     /// <param name="loop">Whether to loop the music.</param>
-    public void PlaySound(string clipName, bool loop = false)
+    public void PlaySound(string clipName)
     {
         switch(clipName)
         {
-            
+            case "ButtonClick":
+                soundSource.clip = soundClip1;
+                break;
         }
-        soundSource.loop = loop;
         soundSource.Play();
     }
     /// <summary>

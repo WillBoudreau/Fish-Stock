@@ -13,6 +13,8 @@ public class MechanicalPlatform : MonoBehaviour
 
     private float ElapseDuration;
     private float TimeElapse = 0;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private Singleton singleton;
 
     private float MvX;
     private float MvY;
@@ -27,6 +29,8 @@ public class MechanicalPlatform : MonoBehaviour
         ElapseDuration = 5f;
         tempPoint1 = Point1;
         tempPoint2 = Point2;
+
+        singleton = GameObject.Find("Singleton").GetComponent<Singleton>();
     }
 
     // Update is called once per frame
@@ -80,7 +84,14 @@ public class MechanicalPlatform : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Pushable"))
         {
-            coll.gameObject.transform.SetParent(null); 
+            if(coll.gameObject.CompareTag("Player"))
+            {
+                coll.gameObject.transform.SetParent(singleton.transform);
+            }
+            else
+            {
+                coll.gameObject.transform.SetParent(null);
+            }
         }
     }
 
