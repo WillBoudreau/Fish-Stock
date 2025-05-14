@@ -29,22 +29,31 @@ public class MechanicalSwitch : MonoBehaviour
             Debug.Log("Switch is activated");
             if (!mPlatform.isRight && !mPlatform.moving)
             {
+                inMotion = true;
                 Debug.Log("Going Right");
                 mPlatform.GoRight();
-                desactivateSwitch(); 
+                desactivateSwitch();
             }
             else if (mPlatform.isRight && !mPlatform.moving)
             {
+                inMotion = true; 
                 Debug.Log("Going Left"); 
                 mPlatform.GoLeft();
                 desactivateSwitch();
             }
+
+            
         }
 
         if (Input.GetKeyDown(KeyCode.K) && !activateMovement && inGilbertHand)
             activateSwitch(); 
 
 
+        if(inMotion && !mPlatform.moving) 
+        {
+            inMotion = false;
+            c_Animator.SetBool("Used", false);
+        }
 
     }
 
@@ -74,7 +83,7 @@ public class MechanicalSwitch : MonoBehaviour
     void desactivateSwitch() 
     {
         activateMovement = false;        
-        c_Animator.SetBool("Used", false); 
+        //c_Animator.SetBool("Used", false); 
     }
 
     void activateSwitch() 
