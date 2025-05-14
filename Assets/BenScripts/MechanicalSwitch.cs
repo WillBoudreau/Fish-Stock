@@ -6,10 +6,10 @@ public class MechanicalSwitch : MonoBehaviour
 {
 
     public MechanicalPlatform mPlatform;
-    Animator c_Animator; 
+    [SerializeField] private Animator c_Animator; 
 
     [SerializeField] private bool activateMovement;
-    private bool inMotion;
+    [SerializeField] private bool inMotion;
     private bool inGilbertHand = false; 
 
 
@@ -26,6 +26,7 @@ public class MechanicalSwitch : MonoBehaviour
     {
         if (activateMovement && !inMotion) 
         {
+            Debug.Log("Switch is activated");
             if (!mPlatform.isRight && !mPlatform.moving)
             {
                 Debug.Log("Going Right");

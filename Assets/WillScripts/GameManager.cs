@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
             SetGameState(gameState.InGame);
             uIManager.SwitchUI(uIManager.hUD);
         }
+        else if(Input.GetKeyDown(KeyCode.I))
+        {
+            levelManager.LoadScene("Level2");
+            SetGameState(gameState.InGame);
+            uIManager.SwitchUI(uIManager.hUD);
+        }
     }
 
     /// <summary>
