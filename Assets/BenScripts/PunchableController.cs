@@ -6,18 +6,25 @@ public class PunchableController : MonoBehaviour
 {
     public GameObject interactableObj = null;
     public KeyCode pushButton;
+    public Animator c_Animator; // Set the variable animator
     // Start is called before the first frame update
     void Start()
     {
-        
+        c_Animator = gameObject.GetComponent<Animator>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pushButton) && interactableObj != null)
+        if (Input.GetKeyDown(pushButton))
         {
-            interactableObj.GetComponent<PunchableBox>().getDamage(1);
+            Debug.Log("Punch"); 
+            c_Animator.SetBool("Punch", true); // Set to tru because Blob is punching
+
+            if(interactableObj != null)
+                interactableObj.GetComponent<PunchableBox>().getDamage(1);  //Only is effective if the punch is againts an punchable object
+
+            
         }
     }
 
