@@ -24,7 +24,8 @@ public class PunchableController : MonoBehaviour
             if(interactableObj != null)
                 interactableObj.GetComponent<PunchableBox>().getDamage(1);  //Only is effective if the punch is againts an punchable object
 
-            
+
+            Invoke("CancelPunch", 0.25f); 
         }
     }
 
@@ -42,5 +43,10 @@ public class PunchableController : MonoBehaviour
         {
             interactableObj = null;
         }
+    }
+
+    void CancelPunch() 
+    {
+        c_Animator.SetBool("Punch", false);
     }
 }
