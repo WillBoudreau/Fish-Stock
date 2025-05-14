@@ -7,21 +7,34 @@ public class LeverBehavior : MonoBehaviour
     [Header("Lever references")]
     [SerializeField] private GameObject[] leverObjects; // Array of lever objects to be activated
     [SerializeField] private string playerNameID; // Name of the player to check for
+    [SerializeField] private Animator leverAnimator; // Animator for the lever
+    private bool playerInTrigger = false;
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player is in the trigger area: " + other.gameObject.name);
             Debug.Log("Player name ID: " + playerNameID);
-            Debug.Log("Input key pressed: " + KeyCode.M);
-            // Check if the player is within the trigger area
-            if (Input.GetKeyDown(KeyCode.M)) 
-            {
-                Debug.Log("Player lever activated: " + other.gameObject.name);
-                Debug.Log("Input key pressed: " + KeyCode.M);
-                Debug.Log("Player activated the lever: " + other.gameObject.name);
-                ActivateLever();
-            }
+            playerInTrigger = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player left the trigger area: " + other.gameObject.name);
+            playerInTrigger = false;
+        }
+    }
+
+    void Update()
+    {
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Player activated the lever.");
+            ActivateLever();
         }
     }
     /// <summary>
@@ -35,12 +48,22 @@ public class LeverBehavior : MonoBehaviour
             if(lever.tag == "Door")
             {
                 Debug.Log("Activating door: " + lever.name); 
+                //leverAnimator.SetBool("Used", true); 
                 lever.GetComponent<DoorBehavior>().OpenTheDoor(); 
             }
             else if(lever.tag == "MovablePlatform")
             {
                 Debug.Log("Activating platform: " + lever.name); 
-                lever.GetComponent<MovingPlatform>().StartMovingPlatform(); 
+                if(lever.GetComponent<MovingPlatform>().isMoving)
+                {
+                    lever.GetComponent<MovingPlatform>().StopMovingPlatform();
+                    //leverAnimator.SetBool("Used", false);
+                }
+                else
+                {
+                    leverAnimator.SetBool("Used", true);
+                    //lever.GetComponent<MovingPlatform>().StartMovingPlatform(); 
+                }
             }
         }
     } 

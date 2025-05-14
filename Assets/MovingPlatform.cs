@@ -7,7 +7,7 @@ public class MovingPlatform : MonoBehaviour
     [Header("Platform Variables")]
     [SerializeField] private float platformSpeed = 2f; // Speed of the platform movement
     [SerializeField] private float platformDistance = 5f; // Distance the platform moves
-    [SerializeField] private bool isMoving = false; // Is the platform moving or not
+    public bool isMoving = false; // Is the platform moving or not
     [SerializeField] private Vector3 startPosition; // Starting position of the platform
     [SerializeField] private Vector3 endPosition; // Ending position of the platform
     [SerializeField] private Vector3 movementAxis; // Axis of movement
