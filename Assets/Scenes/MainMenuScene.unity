@@ -9552,6 +9552,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4081007363437219164, guid: dbbab623015a45243adb8dd0321c3693, type: 3}
+      propertyPath: pickupKey
+      value: 303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920777486047616451, guid: dbbab623015a45243adb8dd0321c3693, type: 3}
+      propertyPath: leverKey
+      value: 303
+      objectReference: {fileID: 0}
     - target: {fileID: 5230482052770257191, guid: dbbab623015a45243adb8dd0321c3693, type: 3}
       propertyPath: m_SortingOrder
       value: 5

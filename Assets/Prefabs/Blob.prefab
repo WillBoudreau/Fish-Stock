@@ -161,7 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableObj: {fileID: 0}
-  pushButton: 113
+  pushButton: 101
+  c_Animator: {fileID: 0}
 --- !u!114 &175598227827070299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupObject: {fileID: 0}
-  pickupKey: 114
+  pickupKey: 101
 --- !u!61 &5381771775838522523
 BoxCollider2D:
   m_ObjectHideFlags: 0
