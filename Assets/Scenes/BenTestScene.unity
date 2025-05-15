@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupOwner: 2
+  isPickedUp: 0
+  spriteRenderer: {fileID: 0}
 --- !u!212 &46113403
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1101,6 +1103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupOwner: 0
+  isPickedUp: 0
+  spriteRenderer: {fileID: 0}
 --- !u!58 &983740320
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1572,8 +1576,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.07881582, y: 0.27425256}
+  m_Size: {x: 0.36020017, y: 0.56419283}
   m_Direction: 0
 --- !u!1001 &1296781574
 PrefabInstance:
@@ -1585,19 +1589,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.33
+      value: 6.07
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.51
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2064,6 +2068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupOwner: 0
+  isPickedUp: 0
+  spriteRenderer: {fileID: 0}
 --- !u!58 &1757833456
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2416,6 +2422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupOwner: 1
+  isPickedUp: 0
+  spriteRenderer: {fileID: 0}
 --- !u!58 &2009896133
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2685,6 +2693,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupOwner: 1
+  isPickedUp: 0
+  spriteRenderer: {fileID: 0}
 --- !u!58 &2125463020
 CircleCollider2D:
   m_ObjectHideFlags: 0

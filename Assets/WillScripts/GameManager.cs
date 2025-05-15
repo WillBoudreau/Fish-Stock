@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
                 SetPlayerState(false);
                 break;
             case gameState.InGame:
-                uIManager.SwitchUI(uIManager.hUD);
+                //uIManager.SwitchUI(uIManager.hUD);
                 SetPlayerState(true);
                 break;
             case gameState.Paused:

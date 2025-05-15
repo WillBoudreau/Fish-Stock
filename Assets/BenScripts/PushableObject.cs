@@ -14,7 +14,7 @@ public class PushableObject : MonoBehaviour
     void Start()
     {
         pushBody = GetComponent<Rigidbody2D>();             
-        pushBody.bodyType = RigidbodyType2D.Static;       
+        //pushBody.bodyType = RigidbodyType2D.Static;       
     }    
 
     // Update is called once per frame
@@ -55,17 +55,18 @@ public class PushableObject : MonoBehaviour
     public void BePushable()
     {
         if (!isPush)
-        {
+        {            
             isPush = true;
             playerController.isPushing = true;
-            pushBody.isKinematic = false;
+            //pushBody.isKinematic = false;
             Debug.Log("Push"); 
         }
         else
         {
             isPush = false;
+            pushBody.velocity = new Vector2(0, 0);
             playerController.isPushing = false; 
-            pushBody.bodyType = RigidbodyType2D.Static;
+            //pushBody.bodyType = RigidbodyType2D.Static;
             Debug.Log("Stop pushing"); 
         }
     }
@@ -75,17 +76,21 @@ public class PushableObject : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             isPush = false;
-            pushBody.bodyType = RigidbodyType2D.Static;
-            Debug.Log("Exit collider"); 
+            //pushBody.bodyType = RigidbodyType2D.Static;
+            Debug.Log("Exit collider");
         }
-        else if(col.gameObject.CompareTag("Mechanical"))
-              pushBody.bodyType = RigidbodyType2D.Static;
+        else if (col.gameObject.CompareTag("Mechanical"))
+        {
+            //pushBody.bodyType = RigidbodyType2D.Static;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col) 
     {
-        if(col.gameObject.CompareTag("Mechanical"))
-        pushBody.isKinematic = false;
+        if (col.gameObject.CompareTag("Mechanical"))
+        {
+            //pushBody.isKinematic = false;
+        }
     }
 
 

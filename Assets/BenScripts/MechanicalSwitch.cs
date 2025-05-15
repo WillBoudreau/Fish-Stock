@@ -45,8 +45,8 @@ public class MechanicalSwitch : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !activateMovement && inGilbertHand)
-            activateSwitch(); 
+        //if (Input.GetKeyDown(KeyCode.K) && !activateMovement && inGilbertHand)
+            //activateSwitch(); 
 
 
         if(inMotion && !mPlatform.moving) 
@@ -63,6 +63,7 @@ public class MechanicalSwitch : MonoBehaviour
         inMotion = false;
     }
 
+    /*
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player" && coll.gameObject.name == "Gilbert")
@@ -78,15 +79,15 @@ public class MechanicalSwitch : MonoBehaviour
         {            
             inGilbertHand = false;
         }
-    }
+    } */ 
 
     void desactivateSwitch() 
     {
         activateMovement = false;        
-        //c_Animator.SetBool("Used", false); 
+        
     }
 
-    void activateSwitch() 
+    public void activateSwitch() 
     {
         activateMovement = true;
         c_Animator.SetBool("Used", true);

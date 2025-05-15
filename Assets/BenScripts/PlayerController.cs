@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if(Mathf.Abs(faceDir) == 1 && !isPushing) 
         {            
-            //transform.localScale = new Vector3(initialScale.x * faceDir, transform.localScale.y, transform.localScale.z);  
+            transform.localScale = new Vector3(initialScale.x * faceDir, transform.localScale.y, transform.localScale.z);  
         }        
 
 

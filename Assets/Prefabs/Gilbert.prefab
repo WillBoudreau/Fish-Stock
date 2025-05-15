@@ -97,8 +97,10 @@ GameObject:
   - component: {fileID: 9171067077149743392}
   - component: {fileID: 7728671610455691567}
   - component: {fileID: 4081007363437219164}
+  - component: {fileID: 4920777486047616451}
   - component: {fileID: 7544893191883169549}
   - component: {fileID: 5755069722277625686}
+  - component: {fileID: 9213156036294972004}
   m_Layer: 0
   m_Name: Gilbert
   m_TagString: Player
@@ -229,6 +231,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupObject: {fileID: 0}
   pickupKey: 108
+--- !u!114 &4920777486047616451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230706095018835741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404cf07f4627bb64991210a02c321927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lever: {fileID: 0}
+  leverKey: 107
+  leverActivated: 0
 --- !u!61 &7544893191883169549
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -301,3 +318,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &9213156036294972004
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230706095018835741}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 317d46c32c8f1b44a99da1360d6e3d75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
