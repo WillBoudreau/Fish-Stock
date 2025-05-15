@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(jumpingKey))
         {
-            if (isGrounded() || isGrounded2())
+            if (!isJumping)
                 Jump();
         }
 

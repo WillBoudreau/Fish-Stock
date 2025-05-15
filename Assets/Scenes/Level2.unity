@@ -1410,6 +1410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Point1: {x: 0, y: 0, z: 0}
   Point2: {x: 0, y: 0, z: 0}
+  gameManager: {fileID: 0}
+  singleton: {fileID: 0}
   moving: 0
   isRight: 0
 --- !u!1 &526227063
@@ -1813,6 +1815,10 @@ PrefabInstance:
     - target: {fileID: 140595045459426441, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633757375507118214, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 2815705695563568546, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
       propertyPath: m_LocalScale.x
@@ -4621,6 +4627,10 @@ PrefabInstance:
     - target: {fileID: 140595045459426441, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633757375507118214, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 2815705695563568546, guid: 13de2e21d8107d84980bb04b556db403, type: 3}
       propertyPath: m_LocalScale.x
