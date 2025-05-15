@@ -16,16 +16,15 @@ public class PunchableController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pushButton))
+        if(interactableObj != null)
         {
-            Debug.Log("Punch"); 
-            c_Animator.SetBool("Punch", true); // Set to tru because Blob is punching
-
-            if(interactableObj != null)
+            if(Input.GetKeyDown(pushButton))
+            {
+                c_Animator.SetBool("Punch", true); // Set to tru because Blob is punching
                 interactableObj.GetComponent<PunchableBox>().getDamage(1);  //Only is effective if the punch is againts an punchable object
-
-
-            Invoke("CancelPunch", 0.25f); 
+                Invoke("CancelPunch", 0.25f); 
+            }
+                
         }
     }
 
