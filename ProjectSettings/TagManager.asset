@@ -14,6 +14,7 @@ TagManager:
   - SpawnPoint2
   - PickUp
   - Mechanical
+  - Lever
   layers:
   - Default
   - TransparentFX
