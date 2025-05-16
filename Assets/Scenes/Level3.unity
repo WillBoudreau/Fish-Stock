@@ -1070,13 +1070,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PunchableBox
       objectReference: {fileID: 0}
+    - target: {fileID: 4636010608293914662, guid: dd45f20d69c3f3b479aec37356729e91, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5991133669732824475, guid: dd45f20d69c3f3b479aec37356729e91, type: 3}
       propertyPath: m_LocalScale.y
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5991133669732824475, guid: dd45f20d69c3f3b479aec37356729e91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.31
+      value: 9.438
       objectReference: {fileID: 0}
     - target: {fileID: 5991133669732824475, guid: dd45f20d69c3f3b479aec37356729e91, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1347,7 +1351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.92
+      value: 9.945
       objectReference: {fileID: 0}
     - target: {fileID: 2313307668123930725, guid: 31c0c965052c7cc4ebc5225b7b4df8bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2669,7 +2673,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3044998385142742817, guid: 180959378cb8a1548b20f50a12636b31, type: 3}
       propertyPath: Point2.x
-      value: -0.224
+      value: -0.724
       objectReference: {fileID: 0}
     - target: {fileID: 3044998385142742817, guid: 180959378cb8a1548b20f50a12636b31, type: 3}
       propertyPath: Point2.y
