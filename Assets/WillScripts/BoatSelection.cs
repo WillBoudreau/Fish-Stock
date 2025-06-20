@@ -162,7 +162,7 @@ public class BoatSelection : MonoBehaviour
         {
             gameManager.SetGameState(GameManager.gameState.InGame); 
             gameManager.SetPlayerState(true); 
-            levelManager.LoadScene("Level1"); 
+            levelManager.LoadScene("Tutorial"); // Load the tutorial scene
             uIManager.SetFalse();
             uIManager.hUD.SetActive(true); 
         }
