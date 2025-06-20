@@ -35,12 +35,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(leftButton))
         {
-            body.velocity = new Vector2(-1 * speed, body.velocity.y);            
+            body.velocity = new Vector2(-1 * speed, body.velocity.y);   
+            if(!isPushing)
             faceDir = -1; //Looking left
         }
         else if (Input.GetKey(rightButton))
         {
             body.velocity = new Vector2(1 * speed, body.velocity.y);
+            if(!isPushing)
             faceDir = 1; //Looking Right
         }
         else
