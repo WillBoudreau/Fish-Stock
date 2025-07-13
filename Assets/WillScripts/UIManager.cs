@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
+using UnityEditor;
+using Unity.Jobs;
+using Unity.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +27,13 @@ public class UIManager : MonoBehaviour
     public float fadeTime = 1.0f;//The time it takes to fade in and out
     public Slider loadingBar;//The loading bar
     public CanvasGroup loadingCanvasGroup;//The loading canvas group
+    [Header("Hint UI Elements")]
+    [SerializeField] private GameObject hintPanel;//The panel that contains the hint text
+    public TextMeshProUGUI hintText;//The text component that displays the hint
+    public List<string> hints = new List<string>();//A list of hints to display
+    public int currentHintIndex = 0;//The index of the current hint being displayed
+    [ReadOnly] public bool isHintActive = false;//Is the hint panel active
+    [SerializeField] private float timeBetweenHintText = 0.05f;//The time between each letter being displayed in the hint text
     [Header("Class References")]
     [SerializeField] private GameManager gameManager;//The game manager
     [SerializeField] private LevelManager levelManager;//The level manager
@@ -73,8 +83,8 @@ public class UIManager : MonoBehaviour
     public void UILoadingScreen(GameObject newUI)
     {
         Debug.Log("Loading Screen Started");
-       StartCoroutine(LoadingUIFadeIn());
-       StartCoroutine(DelayedSwitchUI(0, newUI));
+        StartCoroutine(LoadingUIFadeIn());
+        StartCoroutine(DelayedSwitchUI(0, newUI));
     }
 
     /// <summary>
@@ -89,7 +99,7 @@ public class UIManager : MonoBehaviour
         //loadingScreen.SetActive(true);
         float timer = 0;
 
-        while(timer < fadeTime)
+        while (timer < fadeTime)
         {
             //loadingCanvasGroup.alpha = Mathf.Lerp(0,1, timer / fadeTime);
             timer += Time.deltaTime;
@@ -150,11 +160,11 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SetVolume()
     {
-        if(musicManager.audioMixer.GetFloat("Master", out float masterVolume))
+        if (musicManager.audioMixer.GetFloat("Master", out float masterVolume))
         {
             masterSlider.value = masterVolume;
         }
-        if(musicManager.audioMixer.GetFloat("Music", out float musicVolume))
+        if (musicManager.audioMixer.GetFloat("Music", out float musicVolume))
         {
             musicSlider.value = musicVolume;
         }
