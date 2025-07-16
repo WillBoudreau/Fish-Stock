@@ -6,7 +6,9 @@ public class EnemyAttack : MonoBehaviour
 {
     public GameObject playerObj = null;
     private bool readyToAttack = true;
-    private float cooldownAtk = 2f; 
+    private float cooldownAtk = 2f;
+    private PlayerHealth playerHealth = null; 
+    private PlayerController playerController = null;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,11 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerObj != null && readyToAttack) 
+        if(playerObj != null && readyToAttack && !playerController.invincibility) 
         {
             Debug.Log("The enemy attacks!!");
+            playerHealth.healthSystem.TakeDamage(2);
+            playerController.DamageJump(); 
             readyToAttack = false;
             Invoke("GettingReadyToAttack", cooldownAtk); 
         }
@@ -32,6 +36,8 @@ public class EnemyAttack : MonoBehaviour
         if(coll.gameObject.CompareTag("Player") && playerObj == null) 
         {
             playerObj = coll.gameObject;
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
+            playerController = playerObj.GetComponent<PlayerController>(); 
         }
     }
 

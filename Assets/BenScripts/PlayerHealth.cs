@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private HealthSystem healthSystem = new HealthSystem(); 
+    public HealthSystem healthSystem = new HealthSystem(); 
     public int playerHP;
     public TextMeshProUGUI playerHPtext; 
     public string playerName;

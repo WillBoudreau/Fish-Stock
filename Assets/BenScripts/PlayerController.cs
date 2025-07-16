@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public int faceDir; // this tell if the player is facing right or left with 1 and -1    
     private Vector3 initialScale;
     public bool isPushing = false;
-    public bool isJumping = false; 
+    public bool isJumping = false;
+    public bool invincibility = false; 
 
 
     // Start is called before the first frame update
@@ -74,6 +75,14 @@ public class PlayerController : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, speed * 2);
         isJumping = true;
     }
+
+    public void DamageJump() 
+    {
+        body.velocity = new Vector2(body.velocity.x + (speed * faceDir * -1f), speed * 1.5f); 
+        Debug.Log("Jumping from the attack"); 
+        isJumping = true;
+    }
+
 
     private bool isGrounded()
     {
