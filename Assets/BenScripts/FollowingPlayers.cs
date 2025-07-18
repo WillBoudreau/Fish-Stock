@@ -23,7 +23,7 @@ public class FollowingPlayers : MonoBehaviour
         gilbert = GameObject.Find("Gilbert");
 
         // Gives a initial y position of the camera
-        initialHeight = 13.26244f; 
+        //initialHeight = 13.26244f; 
     }
 
     // Update is called once per frame
