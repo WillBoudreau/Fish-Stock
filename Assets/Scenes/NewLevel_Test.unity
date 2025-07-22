@@ -1551,7 +1551,7 @@ MonoBehaviour:
   blob: {fileID: 0}
   gilbert: {fileID: 0}
   height: 0
-  initialHeight: 0
+  initialHeight: 2
 --- !u!4 &1035360063
 Transform:
   m_ObjectHideFlags: 0
