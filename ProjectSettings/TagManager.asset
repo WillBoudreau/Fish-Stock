@@ -15,6 +15,7 @@ TagManager:
   - PickUp
   - Mechanical
   - Lever
+  - Item
   layers:
   - Default
   - TransparentFX

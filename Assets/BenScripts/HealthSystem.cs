@@ -61,4 +61,10 @@ public class HealthSystem
         maxHealth = _maxhp;
     }
 
+    public void recoverLife(int healing) 
+    {
+        // The hp recovers based on the input
+        health += healing;
+    }
+
 }

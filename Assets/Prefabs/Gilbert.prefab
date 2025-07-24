@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7728671610455691567}
   - component: {fileID: 4081007363437219164}
   - component: {fileID: 4920777486047616451}
+  - component: {fileID: 7332231018301482725}
   - component: {fileID: 7544893191883169549}
   - component: {fileID: 5755069722277625686}
   - component: {fileID: 9213156036294972004}
@@ -190,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   speed: 4
+  jumpSpeed: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -202,6 +204,7 @@ MonoBehaviour:
   faceDir: 0
   isPushing: 0
   isJumping: 0
+  invincibility: 0
 --- !u!114 &7728671610455691567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +249,20 @@ MonoBehaviour:
   lever: {fileID: 0}
   leverKey: 107
   leverActivated: 0
+--- !u!114 &7332231018301482725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230706095018835741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4337f4a51b7334baae1f872eff17d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemObject: {fileID: 0}
+  consumingItem: 108
 --- !u!61 &7544893191883169549
 BoxCollider2D:
   m_ObjectHideFlags: 0

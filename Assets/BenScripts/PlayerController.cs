@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D body;
     [SerializeField] float speed;
+    [SerializeField] float jumpSpeed; 
     private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask groundMask2; 
@@ -72,13 +73,13 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed * 2);
+        body.velocity = new Vector2(body.velocity.x, jumpSpeed * 2);
         isJumping = true;
     }
 
     public void DamageJump() 
     {
-        body.velocity = new Vector2(body.velocity.x + (speed * faceDir * -1f), speed * 1.5f); 
+        body.velocity = new Vector2(body.velocity.x + (jumpSpeed * faceDir * -1f), jumpSpeed * 1.5f); 
         Debug.Log("Jumping from the attack"); 
         isJumping = true;
     }
@@ -101,4 +102,15 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(faceDir, 0), 0.1f, groundMask);
         return raycastHit.collider != null;
     }
+
+    public void IncreaseSpeed(float increase) 
+    {
+        speed += increase; 
+    }
+
+    public void IncreaseJump(float increase) 
+    {
+        jumpSpeed += increase;
+    }
+
 }
