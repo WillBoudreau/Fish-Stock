@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2357908218794234129}
   - component: {fileID: 3171990739159611483}
   - component: {fileID: 175598227827070299}
+  - component: {fileID: 8047434694807552176}
   - component: {fileID: 5381771775838522523}
   - component: {fileID: 6912767029718341299}
   - component: {fileID: 2355585672114983953}
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   speed: 4
+  jumpSpeed: 4
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -119,6 +121,7 @@ MonoBehaviour:
   faceDir: 0
   isPushing: 0
   isJumping: 0
+  invincibility: 0
 --- !u!114 &4129501218628384858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +166,7 @@ MonoBehaviour:
   interactableObj: {fileID: 0}
   pushButton: 101
   c_Animator: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!114 &175598227827070299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +181,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupObject: {fileID: 0}
   pickupKey: 101
+--- !u!114 &8047434694807552176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541527382810775099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4337f4a51b7334baae1f872eff17d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemObject: {fileID: 0}
+  consumingItem: 101
 --- !u!61 &5381771775838522523
 BoxCollider2D:
   m_ObjectHideFlags: 0
