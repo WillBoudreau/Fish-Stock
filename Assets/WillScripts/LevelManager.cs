@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour
         spawnPoint2 = GameObject.FindGameObjectWithTag("SpawnPoint2");
         Debug.Log("SpawnPoint found: " + spawnPoint.name);
         Debug.Log("SpawnPoint2 found: " + spawnPoint2.name);
-        if(spawnPoint != null && spawnPoint2 != null)
+        if (spawnPoint != null && spawnPoint2 != null)
         {
             Debug.Log("SpawnPoint found: " + spawnPoint.name);
             Debug.Log("SpawnPoint2 found: " + spawnPoint2.name);
@@ -75,18 +75,20 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Scene loaded: " + scene.name);
             SceneManager.sceneLoaded -= OnSceneLoaded;
             StartCoroutine(LoadLevel(sceneName));
-            if(scene.name == "Level1")
+            if (scene.name != "MainMenuScene")
             {
                 musicManager.PlayMusic(true, "Gameplay");
                 gameManager.SetGameState(GameManager.gameState.InGame);
                 gameManager.SetPlayerState(true);
                 Time.timeScale = 1;
+                uIManager.SwitchUI(uIManager.hUD);//Switch to the HUD UI
             }
-        }
-        else if(scene.name.StartsWith("Main"))
-        {
-            gameManager.SetGameState(GameManager.gameState.MainMenu);
-            Time.timeScale = 1;
+            else if (scene.name == "MainMenuScene")
+            {
+                gameManager.SetGameState(GameManager.gameState.MainMenu);
+                Time.timeScale = 1;
+                Debug.Log("Main Menu Scene loaded: " + scene.name);
+            }
         }
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

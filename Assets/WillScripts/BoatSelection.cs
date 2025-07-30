@@ -154,17 +154,30 @@ public class BoatSelection : MonoBehaviour
     }
     
     /// <summary>
+    /// Resets the ready state for both players
+    /// </summary>
+    public void ResetReadyState()
+    {
+        player1Ready = false;
+        player2Ready = false;
+        player1BoatText.text = " "; // Reset the text for player 1
+        player2BoatText.text = " "; // Reset the text for player 2
+        player1BoatButton.interactable = true; // Enable the player 1 boat button
+        player2BoatButton.interactable = true; // Enable the player 2 boat button
+    }
+    
+    /// <summary>
     /// When all of the ready buttons are pressed, start the game
     /// </summary>
     public void StartGame()
     {
-        if(player1Ready && player2Ready)
+        if (player1Ready && player2Ready)
         {
-            gameManager.SetGameState(GameManager.gameState.InGame); 
-            gameManager.SetPlayerState(true); 
+            gameManager.SetGameState(GameManager.gameState.InGame);
+            gameManager.SetPlayerState(true);
             levelManager.LoadScene("Tutorial"); // Load the tutorial scene
-            uIManager.SetFalse();
-            uIManager.hUD.SetActive(true); 
+            // uIManager.SetFalse();
+            uIManager.SwitchUI(uIManager.hUD); // Switch to the HUD UI
         }
         else
         {

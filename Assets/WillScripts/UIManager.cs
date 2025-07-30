@@ -96,7 +96,6 @@ public class UIManager : MonoBehaviour
         Debug.Log("Loading Screen Fade In Started");
         loadingScreen.SetActive(true);
         //SetFalse();
-        //loadingScreen.SetActive(true);
         float timer = 0;
 
         while (timer < fadeTime)
@@ -135,7 +134,6 @@ public class UIManager : MonoBehaviour
     public IEnumerator DelayedSwitchUI(float delay, GameObject newUI)
     {
         yield return new WaitForSeconds(delay);
-        SetFalse();
         SwitchUI(newUI);
     }
     /// <summary>
