@@ -10,6 +10,8 @@ public class FollowingPlayerX : MonoBehaviour
 
     [SerializeField] private float width;
     [SerializeField] private float initialWidth;
+    [SerializeField] private bool isLimit = false; //This is a bool that checks if there is a limit or not
+    [SerializeField] private float maxWidth; //This tell the limit of the X position in the camera
 
 
     // Start is called before the first frame update
@@ -23,6 +25,8 @@ public class FollowingPlayerX : MonoBehaviour
 
         if(eyes != null)
             initialWidth = eyes.transform.position.x; 
+
+        isLimit = true;
     }
 
     // Update is called once per frame
@@ -32,9 +36,13 @@ public class FollowingPlayerX : MonoBehaviour
         {
             width = Mathf.Max(blob.transform.position.x, gilbert.transform.position.x);
 
+            // This checks if the position of Blob or Gilbert is more than the current one, in case it is will also check if is less the the maximum of width
             if (width> initialWidth)
             {
-                eyes.transform.position = new Vector3(width, eyes.transform.position.y, eyes.transform.position.z);
+                if ((isLimit && maxWidth > width) || !isLimit)
+                {
+                    eyes.transform.position = new Vector3(width, eyes.transform.position.y, eyes.transform.position.z);
+                }
             }
             else 
             {
