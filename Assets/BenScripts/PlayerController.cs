@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D body;
     [SerializeField] float speed;
-    [SerializeField] float jumpSpeed; 
+    [SerializeField] float jumpSpeed;
     private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private LayerMask groundMask2; 
+    [SerializeField] private LayerMask groundMask2;
+    [SerializeField] private Vector3 minY;//The Minimum Y position
+    public Vector3 initPOS;//The Initial Position of the player when spawning
     public KeyCode jumpingKey;
     public KeyCode leftButton;
     public KeyCode rightButton;
@@ -17,35 +19,36 @@ public class PlayerController : MonoBehaviour
     private Vector3 initialScale;
     public bool isPushing = false;
     public bool isJumping = false;
-    public bool invincibility = false; 
+    public bool invincibility = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();        
+        body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        initialScale = transform.localScale;        
-        faceDir = 1; 
+        initialScale = transform.localScale;
+        faceDir = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ResetPositionIfOutOfBounds();
         if (isGrounded() || isGrounded2())
-            isJumping = false; 
+            isJumping = false;
 
         if (Input.GetKey(leftButton))
         {
-            body.velocity = new Vector2(-1 * speed, body.velocity.y);   
-            if(!isPushing)
-            faceDir = -1; //Looking left
+            body.velocity = new Vector2(-1 * speed, body.velocity.y);
+            if (!isPushing)
+                faceDir = -1; //Looking left
         }
         else if (Input.GetKey(rightButton))
         {
             body.velocity = new Vector2(1 * speed, body.velocity.y);
-            if(!isPushing)
-            faceDir = 1; //Looking Right
+            if (!isPushing)
+                faceDir = 1; //Looking Right
         }
         else
             body.velocity = new Vector2(0, body.velocity.y);
@@ -63,10 +66,10 @@ public class PlayerController : MonoBehaviour
                 Jump();
         }
 
-        if(Mathf.Abs(faceDir) == 1 && !isPushing) 
-        {            
-            transform.localScale = new Vector3(initialScale.x * faceDir, transform.localScale.y, transform.localScale.z);  
-        }        
+        if (Mathf.Abs(faceDir) == 1 && !isPushing)
+        {
+            transform.localScale = new Vector3(initialScale.x * faceDir, transform.localScale.y, transform.localScale.z);
+        }
 
 
     }
@@ -77,10 +80,10 @@ public class PlayerController : MonoBehaviour
         isJumping = true;
     }
 
-    public void DamageJump() 
+    public void DamageJump()
     {
-        body.velocity = new Vector2(body.velocity.x + (jumpSpeed * faceDir * -1f), jumpSpeed * 1.5f); 
-        Debug.Log("Jumping from the attack"); 
+        body.velocity = new Vector2(body.velocity.x + (jumpSpeed * faceDir * -1f), jumpSpeed * 1.5f);
+        Debug.Log("Jumping from the attack");
         isJumping = true;
     }
 
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    private bool isGrounded2() 
+    private bool isGrounded2()
     {
         RaycastHit2D raycastHit2 = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundMask2);
         return raycastHit2.collider != null;
@@ -103,14 +106,31 @@ public class PlayerController : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    public void IncreaseSpeed(float increase) 
+    public void IncreaseSpeed(float increase)
     {
-        speed += increase; 
+        speed += increase;
     }
 
-    public void IncreaseJump(float increase) 
+    public void IncreaseJump(float increase)
     {
         jumpSpeed += increase;
+    }
+    ///<summary>
+    /// Checks if the players position is outside of the minimum Y position
+    ///</summary>
+    private bool IsBelowMinY()
+    {
+        return transform.position.y < minY.y;
+    }
+    /// <summary>
+    /// If outside the min or max Y position, reset the player position to the initial position
+    /// </summary>
+    private void ResetPositionIfOutOfBounds()
+    {
+        if (IsBelowMinY())
+        {
+            transform.position = new Vector3(initPOS.x, initPOS.y, initPOS.z);
+        }
     }
 
 }

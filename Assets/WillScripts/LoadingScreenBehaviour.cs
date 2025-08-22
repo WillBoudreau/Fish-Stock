@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class LoadingScreenBehaviour : MonoBehaviour
 {
     [Header("Loading Screen Settings")]
     [SerializeField] private List<string> loadingMessages = new List<string>();
+    [SerializeField] private List<Sprite> loadingImages = new List<Sprite>();
+    [SerializeField] private Sprite loadingImage;
     [SerializeField] private TextMeshProUGUI loadingText;
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private CanvasGroup canvasGroup;
@@ -44,11 +47,11 @@ public class LoadingScreenBehaviour : MonoBehaviour
         if (loadingMessages.Count == 0) return;
 
         randomIndex = Random.Range(0, loadingMessages.Count);
-        if(messageIndex >= loadingMessages.Count)
+        if (messageIndex >= loadingMessages.Count)
         {
             messageIndex = 0; // Reset index if it exceeds the list size
         }
-        else if(randomIndex == previousMessageIndex)
+        else if (randomIndex == previousMessageIndex)
         {
             // If the random index is the same as the previous one, get a new random index
             randomIndex = (randomIndex + 1) % loadingMessages.Count;
@@ -101,4 +104,14 @@ public class LoadingScreenBehaviour : MonoBehaviour
         canvasGroup.alpha = 1f; // Ensure it ends at 1
     }
     #endregion
+    /// <summary>
+    /// Loads the matching image to the current loading message.
+    /// </summary>
+    /// <param name="index">The index of the image to load.</param>
+    public void LoadImage(int index)
+    {
+        if (loadingImages.Count == 0 || index < 0 || index >= loadingImages.Count) return;
+
+        loadingImage = loadingImages[index];
+    }
 }
