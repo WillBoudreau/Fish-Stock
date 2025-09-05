@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private GameManager gameManager;//The game manager
     [SerializeField] private MusicManager musicManager;//The music manager
+    [SerializeField] private FollowingPlayerX followingPlayerX;//The script that makes the camera follow the player
 
     void Start()
     {
@@ -39,6 +40,10 @@ public class LevelManager : MonoBehaviour
         {
             musicManager = FindObjectOfType<MusicManager>();
         }
+        if(followingPlayerX == null)
+        {
+            followingPlayerX = FindObjectOfType<FollowingPlayerX>();
+        }
         playerPrefab = gameManager.playerPrefab;//Get the player prefab from the GameManager
         player2Prefab = gameManager.player2Prefab;//Get the player prefab for player 2 from the GameManager
     }
@@ -55,6 +60,7 @@ public class LevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        followingPlayerX = FindObjectOfType<FollowingPlayerX>();
         sceneName = SceneManager.GetActiveScene().name;
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
         spawnPoint2 = GameObject.FindGameObjectWithTag("SpawnPoint2");
@@ -65,6 +71,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("SpawnPoint found: " + spawnPoint.name);
             Debug.Log("SpawnPoint2 found: " + spawnPoint2.name);
 
+
             playerPrefab.transform.position = spawnPoint.transform.position;
             player2Prefab.transform.position = spawnPoint2.transform.position;
 
@@ -73,6 +80,9 @@ public class LevelManager : MonoBehaviour
 
             playerPrefab.GetComponent<PlayerController>().initPOS = playerPrefab.transform.position;
             player2Prefab.GetComponent<PlayerController>().initPOS = player2Prefab.transform.position;
+
+            // followingPlayerX.blob = playerPrefab;
+            // followingPlayerX.gilbert = player2Prefab;
         }
         if (scene.name == sceneName)
         {

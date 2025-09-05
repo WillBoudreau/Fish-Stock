@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager uIManager;//The UI Manager
     [SerializeField] private LevelManager levelManager;//The level manager
     [SerializeField] private MusicManager musicManager;//The music manager
+
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();

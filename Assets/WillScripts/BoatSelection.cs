@@ -14,6 +14,7 @@ public class BoatSelection : MonoBehaviour
     [SerializeField] private SpriteRenderer player2BoatSpriteRenderer; // SpriteRenderer for player 2's boat
     [SerializeField] private int player1BoatIndex; // Index of player 1's selected boat
     [SerializeField] private int player2BoatIndex; // Index of player 2's selected boat
+    [SerializeField] private string levelName;//Level name for debug purposes
 
     [Header("Boat Selection UI Player1")]
     [SerializeField] private bool player1Ready; // Flag to check if player 1 is ready
@@ -175,8 +176,11 @@ public class BoatSelection : MonoBehaviour
         {
             gameManager.SetGameState(GameManager.gameState.InGame);
             gameManager.SetPlayerState(true);
-            levelManager.LoadScene("Tutorial"); // Load the tutorial scene
-            // uIManager.SetFalse();
+            if(levelName == "")
+            {
+                levelName = "Tutorial"; // Default to Tutorial if no level name is set
+            }
+            levelManager.LoadScene(levelName); // Load the tutorial scene
             uIManager.SwitchUI(uIManager.hUD); // Switch to the HUD UI
         }
         else

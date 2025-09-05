@@ -35,8 +35,14 @@ public class EndLevelTrigger : MonoBehaviour
         {
             levelManager = FindObjectOfType<LevelManager>();
         }
+        
         playerPrefab = gameManager.playerPrefab;
         player2Prefab = gameManager.player2Prefab;
+
+        foreach (GameObject coin in GameObject.FindGameObjectsWithTag("PickUp"))
+        {
+            requiredObjects.Add(coin);
+        }
     }
     /// <summary>
     /// Check if the players have the required objects before moving on
@@ -118,9 +124,5 @@ public class EndLevelTrigger : MonoBehaviour
     void Update()
     {
         StrobeEffect();
-        foreach (GameObject coin in GameObject.FindGameObjectsWithTag("PickUp"))
-        {
-            requiredObjects.Add(coin);
-        }
     }
 }

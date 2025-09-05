@@ -1290,6 +1290,7 @@ MonoBehaviour:
   uIManager: {fileID: 1635044942}
   gameManager: {fileID: 0}
   musicManager: {fileID: 0}
+  followingPlayerX: {fileID: 0}
 --- !u!1 &208573633
 GameObject:
   m_ObjectHideFlags: 0
@@ -6881,6 +6882,7 @@ MonoBehaviour:
   player2BoatSpriteRenderer: {fileID: 637646597}
   player1BoatIndex: 0
   player2BoatIndex: 0
+  levelName: Tutorial
   player1Ready: 0
   player1BoatButton: {fileID: 506795378}
   player1BoatText: {fileID: 583683655}
